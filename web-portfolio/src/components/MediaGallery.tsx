@@ -8,6 +8,7 @@ interface MediaItem {
     descriptionTitle?: string;
     fullWidth?: boolean;
     qrCode?: string;
+    poster?: string;
 }
 
 interface MediaGalleryProps {
@@ -95,6 +96,7 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ media, columns = 2 }) => {
                             <div className="relative">
                                 <video
                                     src={item.src}
+                                    poster={item.poster}
                                     className="w-full h-auto border-2 border-neo-black transition-all duration-500 pointer-events-none"
                                 />
                                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -169,6 +171,7 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ media, columns = 2 }) => {
                             {selectedMedia.type === 'video' ? (
                                 <video
                                     src={selectedMedia.src}
+                                    poster={selectedMedia.poster}
                                     controls
                                     autoPlay
                                     className="max-h-[80vh] w-auto max-w-full object-contain"

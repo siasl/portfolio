@@ -14,6 +14,7 @@ export interface Project {
         descriptionTitle?: string;
         fullWidth?: boolean;
         qrCode?: string;
+        poster?: string;
     }[];
     links?: {
         label: string;
@@ -69,7 +70,7 @@ export const projects: Project[] = [
         description: 'A tactile to-do list I designed. Inspired by mechanical keyboards, each row has a distinct and satisfying tactility as you erase each task you complete. Originally, I was planning to light up LEDs to indicate a task being completed, but as I iterated on the design, I decided simple was better.',
         tags: ['Product Design', 'Hardware', 'Prototyping'],
         media: [
-            { type: 'video', src: '/assets/do-board/Do_Board_Video_V2.mp4', descriptionTitle: 'Do Board Promo Video', fullWidth: true },
+            { type: 'video', src: '/assets/do-board/Do_Board_Video_V2.mp4', descriptionTitle: 'Do Board Promo Video', fullWidth: true, poster: '/assets/do-board/DoBoard_Poster.png' },
             { type: 'image', src: '/assets/do-board/Do_Board_IMG_8855.jpeg', alt: 'Do Board Prototype', descriptionTitle: 'Close-up of the finished Do Board prototype.' },
             { type: 'image', src: '/assets/do-board/Do_Board_IMG_8843.jpeg', alt: 'Do Board Close up', descriptionTitle: 'Detail view of the toggle switches.' },
             { type: 'image', src: '/assets/do-board/Do_Board_IMG_8871.jpeg', alt: 'V1 Paper Prototype', descriptionTitle: 'Early paper prototype to test the concept.' },
@@ -118,9 +119,9 @@ export const projects: Project[] = [
         description: 'Video projects.',
         tags: ['Video', 'Editing'],
         media: [
-            { type: 'video', src: '/assets/video/Perspective_3.mp4' },
-            { type: 'video', src: '/assets/video/Video_Normal_Size.mp4' },
-            { type: 'video', src: '/assets/video/Ball_Persepective_video.mp4' },
+            { type: 'video', src: '/assets/video/Perspective_3.mp4', poster: '/assets/video/frisbeePoster.png' },
+            { type: 'video', src: '/assets/video/Video_Normal_Size.mp4', poster: '/assets/video/CarPoster.png' },
+            { type: 'video', src: '/assets/video/Ball_Persepective_video.mp4', poster: '/assets/video/ballPoster.png' },
             { type: 'iframe', src: 'https://www.youtube.com/embed/SHSzfIY1MVs' }
         ]
     },
