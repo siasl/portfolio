@@ -41,12 +41,23 @@ export const projects: Project[] = [
             { type: 'image', src: 'assets/call-light/Basic Navigation.png', alt: 'Basic Navigation Diagram', descriptionTitle: 'Basic Navigation Diagram' },
             {
                 type: 'image', src: 'assets/call-light/Room List Screen.png', alt: 'Room List Screen', descriptionTitle: 'Room List Screen', description: <><p>The room screen list shows all the rooms (or patient devices) that are registered with the system. The main purpose of this screen is marking rooms as “favorite” which will make requests that come from those rooms easier to access on the feed screen. This is a scrollable list so if there are more rooms rooms than can fit on the screen, make sure you scroll to see the rest. {'\n'}{'\n'}
-                    1. Screen Title - This tells you what screen you are on{'\n'}
-                    2. Favorite Button- This is the button you use to favorite or unfavorite a room. When a room is favorited the star is yellow. When it is not, the star is black. It is suggested that you mark the rooms you are covering during your shift as favorite while leaving the rest as un-favorited so that your assigned rooms are easier to access.{'\n'}
-                    3. Room Title - This is the name of the device.{'\n'}
-                    4. Separator - The separator separates the favorited rooms from the unfavorited rooms{'\n'}
-                    5. Navigation Bar - This is how you navigate between the two screens. The screen that you are currently in will be highlighted blue.</p></>
+                    <b>1. Screen Title</b> - This tells you what screen you are on{'\n'}
+                    <b>2. Favorite Button</b>- This is the button you use to favorite or unfavorite a room. When a room is favorited the star is yellow. When it is not, the star is black. It is suggested that you mark the rooms you are covering during your shift as favorite while leaving the rest as un-favorited so that your assigned rooms are easier to access.{'\n'}
+                    <b>3. Room Title</b> - This is the name of the device.{'\n'}
+                    <b>4. Separator</b> - The separator separates the favorited rooms from the unfavorited rooms{'\n'}
+                    <b>5. Navigation Bar</b> - This is how you navigate between the two screens. The screen that you are currently in will be highlighted blue.</p></>
             },
+            {
+                type: 'image', src: 'assets/call-light/Feed Screen.png', alt: 'Feed Screen', descriptionTitle: 'Feed Screen', description: <><p>The Feed Screen shows all of the requests that are being made by patient devices. The requests coming from the favorited devices will be put at the top of the list. Requests are sorted in reverse chronological order. This means that the most recent requests will be at the bottom of their section and the oldest requests will be at the top. Requests are colored based on their category. The colors match those that are on the patient device.
+                    {'\n'}{'\n'}
+                    <b>1. Room Title</b> - This tells you which room or device sent the request.{'\n'}
+                    <b>2. Time Stamp</b> - This tells you how long it has been since the request was submitted{'\n'}
+                    <b>3. Request Category</b> - This is the general category of the request. Requests are colored to match their categories.{'\n'}
+                    <b>4. Request Message</b> - This gives more detailed information on what the patient is requesting.{'\n'}
+                    <b>5. Acknowledge Button (Request has been acknowledged)</b> - This button is used to mark requests as acknowledged or completed. If it is filled in, that means it has been acknowledged. The request state syncs across nurse devices so if another nurse has marked it as acknowledged, the button will reflect that status. If this button is pressed when it’s in this state, the request will be marked as completed. More information is provided for this down below.{'\n'}
+                    <b>6. Acknowledge Button (Request has NOT been acknowledge)</b> - When the acknowledge button is pressed while it isn’t filled in, the request will be marked as acknowledged.
+                    The Separator - This separates the favorites section from the non favorite sections</p></>
+            }
         ],
         links: [
             { label: 'Presentation PDF', url: '/assets/call-light/Call_Light_Block_7_Presentation.pdf' }
