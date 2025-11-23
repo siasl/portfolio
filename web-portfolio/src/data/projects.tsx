@@ -41,7 +41,7 @@ export const projects: Project[] = [
             { type: 'image', src: 'assets/call-light/Procedure Diagram.png', alt: 'Call Light Procedure Diagram', descriptionTitle: 'Call Light Procedure Diagram' },
             { type: 'image', src: 'assets/call-light/Basic Navigation.png', alt: 'Basic Navigation Diagram', descriptionTitle: 'Basic Navigation Diagram' },
             {
-                type: 'image', src: 'assets/call-light/Room List Screen.png', alt: 'Room List Screen', descriptionTitle: 'Room List Screen', description: <><p>The room screen list shows all the rooms (or patient devices) that are registered with the system. The main purpose of this screen is marking rooms as “favorite” which will make requests that come from those rooms easier to access on the feed screen. This is a scrollable list so if there are more rooms rooms than can fit on the screen, make sure you scroll to see the rest. {'\n'}{'\n'}
+                type: 'image', src: 'assets/call-light/Room List Screen.png', alt: 'Room List Screen', descriptionTitle: 'Room List Screen', description: <><p>The room screen list shows all the rooms (or patient devices) that are registered with the system. The main purpose of this screen is marking rooms as “favorite” which will make requests that come from those rooms easier to access on the feed screen. This is a scrollable list so if there are more rooms than can fit on the screen, make sure you scroll to see the rest. {'\n'}{'\n'}
                     <b>1. Screen Title</b> - This tells you what screen you are on{'\n'}
                     <b>2. Favorite Button</b>- This is the button you use to favorite or unfavorite a room. When a room is favorited the star is yellow. When it is not, the star is black. It is suggested that you mark the rooms you are covering during your shift as favorite while leaving the rest as un-favorited so that your assigned rooms are easier to access.{'\n'}
                     <b>3. Room Title</b> - This is the name of the device.{'\n'}
@@ -69,18 +69,17 @@ export const projects: Project[] = [
         title: 'Do Board',
         description: 'A tactile to-do list I designed. Inspired by mechanical keyboards, each row has a distinct and satisfying tactility as you erase each task you complete. Originally, I was planning to light up LEDs to indicate a task being completed, but as I iterated on the design, I decided simple was better.',
         tags: ['Product Design', 'Hardware', 'Prototyping'],
+        columns: 2,
         media: [
             { type: 'video', src: '/assets/do-board/Do_Board_Video_V2.mp4', descriptionTitle: 'Do Board Promo Video', fullWidth: true, poster: '/assets/do-board/DoBoard_Poster.png' },
             { type: 'image', src: '/assets/do-board/Do_Board_IMG_8855.jpeg', alt: 'Do Board Prototype', descriptionTitle: 'Close-up of the finished Do Board prototype.' },
-            { type: 'image', src: '/assets/do-board/Do_Board_IMG_8843.jpeg', alt: 'Do Board Close up', descriptionTitle: 'Detail view of the toggle switches.' },
-            { type: 'image', src: '/assets/do-board/Do_Board_IMG_8871.jpeg', alt: 'V1 Paper Prototype', descriptionTitle: 'Early paper prototype to test the concept.' },
-            { type: 'image', src: '/assets/do-board/Do_Board_IMG_8868.jpeg', alt: 'V1 Paper Prototype', descriptionTitle: 'Early paper prototype to test the concept.' },
-            { type: 'image', src: '/assets/do-board/IMG_8859.jpeg', alt: 'V2 Laser Cut', descriptionTitle: 'V2 Laser Cut' },
-            { type: 'image', src: '/assets/do-board/IMG_8860.jpeg', alt: 'V2 Laser Cut', descriptionTitle: 'V2 Laser Cut' },
-            { type: 'image', src: '/assets/do-board/IMG_8864.jpeg', alt: 'V2 Laser Cut' },
-            { type: 'image', src: '/assets/do-board/Do_Board_Image_8873.jpeg', alt: 'All iterations' },
-            { type: 'image', src: '/assets/do-board/Dec_21_2021_Photo_(1).jpeg', alt: 'Design Drawing' },
-            { type: 'image', src: '/assets/do-board/Dec_21_2021_Photo.jpeg', alt: 'Design Drawing' },
+            { type: 'image', src: '/assets/do-board/Do_Board_IMG_8843.jpeg', alt: 'Do Board Close up', descriptionTitle: 'Detailed view of the final iteration.' },
+            { type: 'image', src: '/assets/do-board/Do_Board_IMG_8868.jpeg', alt: 'V1 Paper Prototype', descriptionTitle: 'V1 Paper Prototype' },
+            { type: 'image', src: '/assets/do-board/IMG_8859.jpeg', alt: 'V2 Laser Cut', descriptionTitle: 'V2 - Still using lights and electronics.' },
+            { type: 'image', src: '/assets/do-board/IMG_8864.jpeg', alt: 'V2 Laser Cut', descriptionTitle: 'V2 - lighting up ' },
+            { type: 'image', src: '/assets/do-board/Do_Board_Image_8873.jpeg', alt: 'All iterations', descriptionTitle: 'All iterations' },
+            { type: 'image', src: '/assets/do-board/Dec_21_2021_Photo_(1).jpeg', alt: 'Design Drawing', descriptionTitle: 'Design Drawings' },
+            { type: 'image', src: '/assets/do-board/Dec_21_2021_Photo.jpeg', alt: 'Design Drawing', descriptionTitle: 'Design Drawings' },
         ]
     },
     {
@@ -89,9 +88,10 @@ export const projects: Project[] = [
         description: 'Instagram digest - Stay in the know without the infinite feed! An automation that sends me posts from important Instagram accounts to me on Telegram daily. Scrapes Instagram using Apify Actors. Also includes an AI Recipe Bot.',
         tags: ['Automation', 'Coding', 'AI'],
         media: [
-            { type: 'image', src: '/assets/personal-automations/SCR-20251101-pgvs.png', alt: 'Instagram Digest' },
-            { type: 'iframe', src: 'https://www.youtube.com/embed/37RvtquWNng' },
-            { type: 'iframe', src: 'https://www.youtube.com/embed/pSGgV2VVAcY' }
+            {
+                type: 'iframe', src: 'https://www.youtube.com/embed/37RvtquWNng', descriptionTitle: 'Instagram Digest Creator'
+            },
+            { type: 'iframe', src: 'https://www.youtube.com/embed/pSGgV2VVAcY', descriptionTitle: 'AI Recipe Bot' }
         ]
     },
     {
@@ -119,10 +119,10 @@ export const projects: Project[] = [
         description: 'Video projects.',
         tags: ['Video', 'Editing'],
         media: [
-            { type: 'video', src: '/assets/video/Perspective_3.mp4', poster: '/assets/video/frisbeePoster.png' },
-            { type: 'video', src: '/assets/video/Video_Normal_Size.mp4', poster: '/assets/video/CarPoster.png' },
-            { type: 'video', src: '/assets/video/Ball_Persepective_video.mp4', poster: '/assets/video/ballPoster.png' },
-            { type: 'iframe', src: 'https://www.youtube.com/embed/SHSzfIY1MVs' }
+            { type: 'video', src: '/assets/video/Perspective_3.mp4', poster: '/assets/video/frisbeePoster.png', descriptionTitle: 'Frisbee Video - 8.2M views, 1M Likes on Tiktok' },
+            { type: 'video', src: '/assets/video/Ball_Persepective_video.mp4', poster: '/assets/video/ballPoster.png', descriptionTitle: 'Ball Video - 2.7M views, 107.3k Likes on Tiktok' },
+            { type: 'video', src: '/assets/video/Video_Normal_Size.mp4', poster: '/assets/video/CarPoster.png', descriptionTitle: 'Car Video - Playing with perspective, car' },
+            { type: 'iframe', src: 'https://www.youtube.com/embed/SHSzfIY1MVs', descriptionTitle: 'Ski Bum - Basic Filmmaking Final Project' }
         ]
     },
     {
@@ -132,11 +132,11 @@ export const projects: Project[] = [
         tags: ['AR', 'VR', 'Snapchat Lens', 'Photogrammetry'],
         columns: 4,
         media: [
-            { type: 'video', src: '/assets/xr/Snapchat_Video_(2).mp4', description: 'Farm Animal Lens', qrCode: '/assets/xr/image.png' },
-            { type: 'video', src: '/assets/xr/Snapchat-1064081822.mp4', description: 'Furniture Lens', qrCode: '/assets/xr/image 1.png' },
-            { type: 'video', src: '/assets/xr/Snapchat_Video_(1).mp4', description: 'Sailboat Lens', qrCode: '/assets/xr/image 2.png' },
-            { type: 'video', src: '/assets/xr/Screen_Recording_Feb_24_2021_from_Google_Photos.mp4', description: 'Retro Radio Lens' },
-            { type: 'iframe', src: 'https://panoraven.com/en/embed/LtyX6M4M7S', description: 'An experimental VR environment I created in Photoshop. Then I exported the image to Audacity, an audio editor where I was able to manipulate the raw data of the image to create the distortions you see now. \n---\nClick and drag on it. Click the full screen button to view it in full screen. If you have VR glasses, even better!', fullWidth: true },
+            { type: 'video', src: '/assets/xr/Snapchat_Video_(2).mp4', descriptionTitle: 'Farm Animal Lens', qrCode: '/assets/xr/image.png' },
+            { type: 'video', src: '/assets/xr/Snapchat-1064081822.mp4', descriptionTitle: 'Furniture Lens', qrCode: '/assets/xr/image 1.png' },
+            { type: 'video', src: '/assets/xr/Snapchat_Video_(1).mp4', descriptionTitle: 'Sailboat Lens', qrCode: '/assets/xr/image 2.png' },
+            { type: 'video', src: '/assets/xr/Screen_Recording_Feb_24_2021_from_Google_Photos.mp4', descriptionTitle: 'Retro Radio Lens' },
+            { type: 'iframe', src: 'https://panoraven.com/en/embed/LtyX6M4M7S', descriptionTitle: 'An experimental VR environment I created in Photoshop. Then I exported the image to Audacity, an audio editor where I was able to manipulate the raw data of the image to create the distortions you see now. \n---\nClick and drag on it. Click the full screen button to view it in full screen. If you have VR glasses, even better!', fullWidth: true },
             { type: 'iframe', src: 'https://sketchfab.com/models/055f250172434630ab35bf64f4a211bd/embed' },
             { type: 'iframe', src: 'https://sketchfab.com/models/816e7f9cdefe48a9b48082471d2edbce/embed' },
         ]
@@ -144,6 +144,7 @@ export const projects: Project[] = [
     {
         id: 'book-arts',
         title: 'Book Arts',
+        columns: 4,
         description: 'Tied Up - Monotype prints and book binding. A zine I designed in photoshop/illustrator.',
         tags: ['Print', 'Design', 'Book Binding'],
         media: [

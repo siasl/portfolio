@@ -54,6 +54,49 @@ const MediaDescription: React.FC<{ title?: string; body?: string | React.ReactNo
     );
 };
 
+const ScrollableDescription: React.FC<{ title?: string; body?: string | React.ReactNode }> = ({ title, body }) => {
+    const contentRef = React.useRef<HTMLDivElement>(null);
+    const [showScrollIndicator, setShowScrollIndicator] = React.useState(false);
+
+    const checkScroll = () => {
+        if (contentRef.current) {
+            const { scrollTop, scrollHeight, clientHeight } = contentRef.current;
+            // Show indicator if there is more content to scroll to (with a small buffer)
+            setShowScrollIndicator(scrollHeight > clientHeight && scrollTop + clientHeight < scrollHeight - 10);
+        }
+    };
+
+    React.useEffect(() => {
+        checkScroll();
+        window.addEventListener('resize', checkScroll);
+        return () => window.removeEventListener('resize', checkScroll);
+    }, [title, body]);
+
+    return (
+        <div className="relative mt-4 max-w-3xl mx-auto flex-shrink-0 max-h-[30vh] flex flex-col min-h-0">
+            <div
+                ref={contentRef}
+                onScroll={checkScroll}
+                className="overflow-y-auto px-4 pb-2 text-white text-center"
+            >
+                {title && (
+                    <div className="text-2xl font-bold font-mono mb-2 sticky top-0 bg-black py-1 z-10">
+                        {title}
+                    </div>
+                )}
+                {body && (
+                    <div className="text-xl font-mono whitespace-pre-wrap">
+                        {body}
+                    </div>
+                )}
+            </div>
+            {showScrollIndicator && (
+                <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-black to-transparent pointer-events-none" />
+            )}
+        </div>
+    );
+};
+
 const MediaGallery: React.FC<MediaGalleryProps> = ({ media, columns = 2 }) => {
     const [selectedMedia, setSelectedMedia] = React.useState<MediaItem | null>(null);
 
@@ -89,7 +132,7 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ media, columns = 2 }) => {
                 {media.map((item, index) => (
                     <div
                         key={index}
-                        className={`border-4 border-neo-black shadow-neo bg-white p-2 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all duration-200 cursor-pointer group ${item.fullWidth ? `md:col-span-${columns}` : ''}`}
+                        className={`border-4 border-neo-black shadow-neo bg-white p-2 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all duration-200 cursor-pointer group ${item.fullWidth ? 'md:col-span-full' : ''}`}
                         onClick={() => item.type !== 'iframe' && setSelectedMedia(item)}
                     >
                         {item.type === 'video' ? (
@@ -165,37 +208,28 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ media, columns = 2 }) => {
                         </button>
 
                         <div
-                            className="border-4 border-neo-white shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] bg-black p-2 max-w-full"
+                            className="border-4 border-neo-white shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] bg-black p-2 w-full max-w-6xl h-[90vh] flex flex-col"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            {selectedMedia.type === 'video' ? (
-                                <video
-                                    src={selectedMedia.src}
-                                    poster={selectedMedia.poster}
-                                    controls
-                                    autoPlay
-                                    className="max-h-[80vh] w-auto max-w-full object-contain"
-                                />
-                            ) : (
-                                <img
-                                    src={selectedMedia.src}
-                                    alt={selectedMedia.alt || 'Full screen media'}
-                                    className="max-h-[80vh] w-auto max-w-full object-contain"
-                                />
-                            )}
+                            <div className="flex-1 min-h-0 relative w-full bg-black">
+                                {selectedMedia.type === 'video' ? (
+                                    <video
+                                        src={selectedMedia.src}
+                                        poster={selectedMedia.poster}
+                                        controls
+                                        autoPlay
+                                        className="absolute inset-0 w-full h-full object-contain"
+                                    />
+                                ) : (
+                                    <img
+                                        src={selectedMedia.src}
+                                        alt={selectedMedia.alt || 'Full screen media'}
+                                        className="absolute inset-0 w-full h-full object-contain"
+                                    />
+                                )}
+                            </div>
                             {(selectedMedia.description || selectedMedia.descriptionTitle) && (
-                                <div className="mt-4 text-white text-center max-w-3xl mx-auto">
-                                    {selectedMedia.descriptionTitle && (
-                                        <div className="text-2xl font-bold font-mono mb-2">
-                                            {selectedMedia.descriptionTitle}
-                                        </div>
-                                    )}
-                                    {selectedMedia.description && (
-                                        <div className="text-xl font-mono whitespace-pre-wrap">
-                                            {selectedMedia.description}
-                                        </div>
-                                    )}
-                                </div>
+                                <ScrollableDescription title={selectedMedia.descriptionTitle} body={selectedMedia.description} />
                             )}
                         </div>
                     </div>
