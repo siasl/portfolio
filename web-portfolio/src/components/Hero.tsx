@@ -55,7 +55,7 @@ const Hero: React.FC = () => {
                     transition={{ delay: 0.8 }}
                     className="mt-8 text-xl font-bold bg-ski-orange text-white inline-block px-4 py-1 border-2 border-neo-black transform rotate-1"
                 >
-                    SKIING • FLY FISHING • DESIGN • TECH
+                    DESIGN • TECH
                 </motion.p>
 
                 {/* Table of Contents */}

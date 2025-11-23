@@ -8,6 +8,7 @@ export interface Project {
         src: string;
         alt?: string;
         description?: string;
+        fullWidth?: boolean;
     }[];
     links?: {
         label: string;
@@ -22,7 +23,7 @@ export const projects: Project[] = [
         description: 'A tactile to-do list I designed. Inspired by mechanical keyboards, each row has a distinct and satisfying tactility as you erase each task you complete. Originally, I was planning to light up LEDs to indicate a task being completed, but as I iterated on the design, I decided simple was better.',
         tags: ['Product Design', 'Hardware', 'Prototyping'],
         media: [
-            { type: 'video', src: '/assets/do-board/Do_Board_Video_V2.mp4', description: 'Final prototype demonstration showing the tactile mechanism.' },
+            { type: 'video', src: '/assets/do-board/Do_Board_Video_V2.mp4', description: 'Do Board Promo Video', fullWidth: true },
             { type: 'image', src: '/assets/do-board/Do_Board_IMG_8855.jpeg', alt: 'Do Board Prototype', description: 'Close-up of the finished Do Board prototype.' },
             { type: 'image', src: '/assets/do-board/Do_Board_IMG_8843.jpeg', alt: 'Do Board Close up', description: 'Detail view of the toggle switches.' },
             { type: 'image', src: '/assets/do-board/Do_Board_IMG_8871.jpeg', alt: 'V1 Paper Prototype', description: 'Early paper prototype to test the concept.' },
@@ -104,8 +105,8 @@ export const projects: Project[] = [
         description: 'Video projects.',
         tags: ['Video', 'Editing'],
         media: [
-            { type: 'video', src: '/assets/video/Video_Normal_Size.mp4' },
             { type: 'video', src: '/assets/video/Perspective_3.mp4' },
+            { type: 'video', src: '/assets/video/Video_Normal_Size.mp4' },
             { type: 'iframe', src: 'https://www.youtube.com/embed/SHSzfIY1MVs' }
         ]
     },
@@ -123,7 +124,7 @@ export const projects: Project[] = [
             { type: 'image', src: '/assets/xr/image 2.png', alt: 'Sailboat Lens' },
             { type: 'video', src: '/assets/xr/Screen_Recording_Feb_24_2021_from_Google_Photos.mp4' },
             { type: 'image', src: '/assets/xr/image 3.png', alt: 'Retro Radio Lens' },
-            { type: 'iframe', src: 'https://panoraven.com/en/embed/LtyX6M4M7S' },
+            { type: 'iframe', src: 'https://panoraven.com/en/embed/LtyX6M4M7S', description: 'An experimental VR environment I created in Photoshop. Then I exported the image to Audacity, an audio editor where I was able to manipulate the raw data of the image to create the distortions you see now. \n---\nClick and drag on it. Click the full screen button to view it in full screen. If you have VR glasses, even better!' },
             { type: 'iframe', src: 'https://sketchfab.com/models/055f250172434630ab35bf64f4a211bd/embed' },
             { type: 'iframe', src: 'https://sketchfab.com/models/816e7f9cdefe48a9b48082471d2edbce/embed' },
         ]

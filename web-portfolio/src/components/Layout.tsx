@@ -1,14 +1,11 @@
 import React from 'react';
-import CustomCursor from './CustomCursor';
-
 interface LayoutProps {
     children: React.ReactNode;
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
-        <div className="min-h-screen bg-snow-white text-neo-black selection:bg-ski-orange selection:text-neo-white overflow-hidden cursor-none">
-            <CustomCursor />
+        <div className="min-h-screen bg-snow-white text-neo-black selection:bg-ski-orange selection:text-neo-white overflow-hidden">
             <main className="relative z-10">
                 {children}
             </main>

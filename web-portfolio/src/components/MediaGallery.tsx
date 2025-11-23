@@ -5,6 +5,7 @@ interface MediaItem {
     src: string;
     alt?: string;
     description?: string;
+    fullWidth?: boolean;
 }
 
 interface MediaGalleryProps {
@@ -38,7 +39,7 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ media }) => {
                 {media.map((item, index) => (
                     <div
                         key={index}
-                        className="border-4 border-neo-black shadow-neo bg-white p-2 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all duration-200 cursor-pointer group"
+                        className={`border-4 border-neo-black shadow-neo bg-white p-2 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all duration-200 cursor-pointer group ${item.fullWidth ? 'md:col-span-2' : ''}`}
                         onClick={() => item.type !== 'iframe' && setSelectedMedia(item)}
                     >
                         {item.type === 'video' ? (
@@ -66,13 +67,13 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ media }) => {
                             <img
                                 src={item.src}
                                 alt={item.alt || 'Project media'}
-                                className="w-full h-auto border-2 border-neo-black md:grayscale hover:grayscale-0 transition-all duration-500"
+                                className="w-full h-auto border-2 border-neo-black transition-all duration-500"
                             />
                         )}
 
                         {/* Description */}
                         {item.description && (
-                            <p className="mt-3 text-lg font-bold font-mono text-neo-black px-1">
+                            <p className="mt-3 text-lg font-bold font-mono text-neo-black px-1 whitespace-pre-wrap">
                                 {item.description}
                             </p>
                         )}
@@ -116,7 +117,7 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ media }) => {
                                 />
                             )}
                             {selectedMedia.description && (
-                                <p className="mt-4 text-xl font-bold font-mono text-white text-center max-w-3xl mx-auto">
+                                <p className="mt-4 text-xl font-bold font-mono text-white text-center max-w-3xl mx-auto whitespace-pre-wrap">
                                     {selectedMedia.description}
                                 </p>
                             )}
