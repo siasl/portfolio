@@ -32,8 +32,8 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({ project, index }) => {
 
                                 // Colors matching ski trail ratings
                                 let colorClass = '';
-                                if (typeIndex === 0) colorClass = 'text-[#009E60]'; // Green
-                                else if (typeIndex === 1) colorClass = 'text-[#007FFF]'; // Blue
+                                if (typeIndex === 0) colorClass = 'text-[#009E60] pb-0.5'; // Green
+                                else if (typeIndex === 1) colorClass = 'text-[#007FFF] pb-1'; // Blue
                                 else if (typeIndex === 2) colorClass = 'text-black'; // Black
                                 else colorClass = 'text-[#000000]'; // Double Black
 
@@ -46,9 +46,9 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({ project, index }) => {
                             })}
                         </div>
 
-                        <p className="text-xl md:text-2xl font-medium max-w-2xl border-l-4 border-neo-black pl-6">
+                        <div className="text-xl md:text-2xl font-medium border-l-4 border-neo-black pl-6 whitespace-pre-wrap">
                             {project.description}
-                        </p>
+                        </div>
 
                         {project.links && project.links.length > 0 && (
                             <div className="mt-8 flex flex-col gap-4">

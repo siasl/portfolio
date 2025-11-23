@@ -63,12 +63,12 @@ const Hero: React.FC = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1.0 }}
-                    className="mt-12 flex flex-wrap justify-center gap-4 md:gap-8"
+                    className="mt-12 flex flex-wrap justify-center md:grid md:grid-cols-4 gap-4 md:gap-8"
                 >
                     {[
+                        { id: 'call-light', label: 'Call Light' },
                         { id: 'do-board', label: 'Do Board' },
                         { id: 'book-arts', label: 'Book Arts' },
-                        { id: 'call-light', label: 'Call Light' },
                         { id: 'personal-automations', label: 'Automations' },
                         { id: 'photography', label: 'Photography' },
                         { id: 'video', label: 'Video' },

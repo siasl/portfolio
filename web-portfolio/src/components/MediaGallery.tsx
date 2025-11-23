@@ -4,8 +4,9 @@ interface MediaItem {
     type: 'image' | 'video' | 'iframe';
     src: string;
     alt?: string;
-    description?: string;
+    description?: string | React.ReactNode;
     fullWidth?: boolean;
+    qrCode?: string;
 }
 
 interface MediaGalleryProps {
@@ -35,7 +36,7 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ media }) => {
 
     return (
         <>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 items-start">
                 {media.map((item, index) => (
                     <div
                         key={index}
@@ -46,7 +47,7 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ media }) => {
                             <div className="relative">
                                 <video
                                     src={item.src}
-                                    className="w-full h-auto border-2 border-neo-black md:grayscale group-hover:grayscale-0 transition-all duration-500 pointer-events-none"
+                                    className="w-full h-auto border-2 border-neo-black transition-all duration-500 pointer-events-none"
                                 />
                                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                                     <div className="bg-neo-white border-2 border-neo-black p-3 rounded-full shadow-neo-sm group-hover:scale-110 transition-transform duration-200">
@@ -55,6 +56,23 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ media }) => {
                                         </svg>
                                     </div>
                                 </div>
+                                {item.qrCode && (
+                                    <button
+                                        className="absolute top-2 right-2 bg-neo-white p-2 border-2 border-neo-black shadow-neo-sm hover:bg-neo-green transition-colors z-20 pointer-events-auto"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setSelectedMedia({ type: 'image', src: item.qrCode!, alt: 'Snapchat QR Code' });
+                                        }}
+                                        title="Show Snapcode"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <rect x="3" y="3" width="7" height="7"></rect>
+                                            <rect x="14" y="3" width="7" height="7"></rect>
+                                            <rect x="14" y="14" width="7" height="7"></rect>
+                                            <rect x="3" y="14" width="7" height="7"></rect>
+                                        </svg>
+                                    </button>
+                                )}
                             </div>
                         ) : item.type === 'iframe' ? (
                             <iframe
@@ -73,9 +91,9 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ media }) => {
 
                         {/* Description */}
                         {item.description && (
-                            <p className="mt-3 text-lg font-bold font-mono text-neo-black px-1 whitespace-pre-wrap">
+                            <div className="mt-3 text-lg font-mono text-neo-black px-1 whitespace-pre-wrap">
                                 {item.description}
-                            </p>
+                            </div>
                         )}
                     </div>
                 ))}
@@ -117,9 +135,9 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ media }) => {
                                 />
                             )}
                             {selectedMedia.description && (
-                                <p className="mt-4 text-xl font-bold font-mono text-white text-center max-w-3xl mx-auto whitespace-pre-wrap">
+                                <div className="mt-4 text-xl font-mono text-white text-center max-w-3xl mx-auto whitespace-pre-wrap">
                                     {selectedMedia.description}
-                                </p>
+                                </div>
                             )}
                         </div>
                     </div>
