@@ -5,11 +5,13 @@ export interface Project {
     title: string;
     description: string | React.ReactNode;
     tags: string[];
+    columns?: number;
     media: {
         type: 'image' | 'video' | 'iframe';
         src: string;
         alt?: string;
         description?: string | React.ReactNode;
+        descriptionTitle?: string;
         fullWidth?: boolean;
         qrCode?: string;
     }[];
@@ -25,19 +27,25 @@ export const projects: Project[] = [
         title: 'Call Light',
         description: (
             <>
-                <span><b>Computer Science senior project</b></span> - I served as product manager, designer and front end developer. We came up with a prototype of a novel way for patients to communicate with their nurses while in the hospital.
-                {'\n'}
+                <b>Computer Science Major Senior Project</b>
+                {'\n'}I served as product manager, designer and front end developer. We came up with a prototype of a novel way for patients to communicate with their nurses while in the hospital.
+                {'\n'}{'\n'}
                 The purpose of this project was to address antiquated communication between nurses and patients on the medical surgical floor of the hospital. In this environment a nurse is frequently responsible for multiple patients. The current system is inefficient because the only way the patient can contact a nurse is by activating a light above their door via a button. While a call light is usually not an emergency, as those are typically caught in real time through existing technologies, the nurse must respond as quickly as possible because there is no way of knowing why the light has been activated without speaking to the patient. After the light has been activated, the nurse frequently has to make trips to other parts of the floor before returning to meet the needs of the patient.
-                {'\n'}
+                {'\n'}{'\n'}
                 There are so many steps that are required to meet the needs of a patient that simply having a patient turning on their call light becomes a very time consuming process. This can be compounded by the presence of COVID-19 patients who require the nurse to apply and remove additional protective equipment every time the enter and leave the patient’s room. Our project will introduce a way for an alert and aware patient to be in direct contact with their nurse via an application. This app will allow for the patient to make requests of the nurse and receive confirmation from the nurse that the request will be fulfilled. This allows nurses to remove unneeded trips to and from a patients room and prioritize their current task based on time sensitivity. An important feature of this app is that it will also be designed to end any ability for a patient to contact a nurse either when the nurse’s shift is over or when the patient is discharged from the medical surgical unit.
             </>
         ),
         tags: ['Product Management', 'Design', 'Frontend'],
         media: [
-            { type: 'image', src: 'assets/call-light/Procedure Diagram.png', alt: 'Call Light Procedure Diagram', description: 'Call Light Procedure Diagram' },
-            { type: 'image', src: 'assets/call-light/Basic Navigation.png', alt: 'Basic Navigation Diagram', description: 'Basic Navigation Diagram' },
+            { type: 'image', src: 'assets/call-light/Procedure Diagram.png', alt: 'Call Light Procedure Diagram', descriptionTitle: 'Call Light Procedure Diagram' },
+            { type: 'image', src: 'assets/call-light/Basic Navigation.png', alt: 'Basic Navigation Diagram', descriptionTitle: 'Basic Navigation Diagram' },
             {
-                type: 'image', src: 'assets/call-light/Room List Screen.png', alt: 'Room List Screen', description: <><b>Room List Screen</b><br></br><p>The room screen list shows all the rooms (or patient devices) that are registered with the system. The main purpose of this screen is marking rooms as “favorite” which will make requests that come from those rooms easier to access on the feed screen. This is a scrollable list so if there are more rooms rooms than can fit on the screen, make sure you scroll to see the rest.</p></>
+                type: 'image', src: 'assets/call-light/Room List Screen.png', alt: 'Room List Screen', descriptionTitle: 'Room List Screen', description: <><p>The room screen list shows all the rooms (or patient devices) that are registered with the system. The main purpose of this screen is marking rooms as “favorite” which will make requests that come from those rooms easier to access on the feed screen. This is a scrollable list so if there are more rooms rooms than can fit on the screen, make sure you scroll to see the rest. {'\n'}{'\n'}
+                    1. Screen Title - This tells you what screen you are on{'\n'}
+                    2. Favorite Button- This is the button you use to favorite or unfavorite a room. When a room is favorited the star is yellow. When it is not, the star is black. It is suggested that you mark the rooms you are covering during your shift as favorite while leaving the rest as un-favorited so that your assigned rooms are easier to access.{'\n'}
+                    3. Room Title - This is the name of the device.{'\n'}
+                    4. Separator - The separator separates the favorited rooms from the unfavorited rooms{'\n'}
+                    5. Navigation Bar - This is how you navigate between the two screens. The screen that you are currently in will be highlighted blue.</p></>
             },
         ],
         links: [
@@ -50,13 +58,13 @@ export const projects: Project[] = [
         description: 'A tactile to-do list I designed. Inspired by mechanical keyboards, each row has a distinct and satisfying tactility as you erase each task you complete. Originally, I was planning to light up LEDs to indicate a task being completed, but as I iterated on the design, I decided simple was better.',
         tags: ['Product Design', 'Hardware', 'Prototyping'],
         media: [
-            { type: 'video', src: '/assets/do-board/Do_Board_Video_V2.mp4', description: 'Do Board Promo Video', fullWidth: true },
-            { type: 'image', src: '/assets/do-board/Do_Board_IMG_8855.jpeg', alt: 'Do Board Prototype', description: 'Close-up of the finished Do Board prototype.' },
-            { type: 'image', src: '/assets/do-board/Do_Board_IMG_8843.jpeg', alt: 'Do Board Close up', description: 'Detail view of the toggle switches.' },
-            { type: 'image', src: '/assets/do-board/Do_Board_IMG_8871.jpeg', alt: 'V1 Paper Prototype', description: 'Early paper prototype to test the concept.' },
-            { type: 'image', src: '/assets/do-board/Do_Board_IMG_8868.jpeg', alt: 'V1 Paper Prototype' },
-            { type: 'image', src: '/assets/do-board/IMG_8859.jpeg', alt: 'V2 Laser Cut' },
-            { type: 'image', src: '/assets/do-board/IMG_8860.jpeg', alt: 'V2 Laser Cut' },
+            { type: 'video', src: '/assets/do-board/Do_Board_Video_V2.mp4', descriptionTitle: 'Do Board Promo Video', fullWidth: true },
+            { type: 'image', src: '/assets/do-board/Do_Board_IMG_8855.jpeg', alt: 'Do Board Prototype', descriptionTitle: 'Close-up of the finished Do Board prototype.' },
+            { type: 'image', src: '/assets/do-board/Do_Board_IMG_8843.jpeg', alt: 'Do Board Close up', descriptionTitle: 'Detail view of the toggle switches.' },
+            { type: 'image', src: '/assets/do-board/Do_Board_IMG_8871.jpeg', alt: 'V1 Paper Prototype', descriptionTitle: 'Early paper prototype to test the concept.' },
+            { type: 'image', src: '/assets/do-board/Do_Board_IMG_8868.jpeg', alt: 'V1 Paper Prototype', descriptionTitle: 'Early paper prototype to test the concept.' },
+            { type: 'image', src: '/assets/do-board/IMG_8859.jpeg', alt: 'V2 Laser Cut', descriptionTitle: 'V2 Laser Cut' },
+            { type: 'image', src: '/assets/do-board/IMG_8860.jpeg', alt: 'V2 Laser Cut', descriptionTitle: 'V2 Laser Cut' },
             { type: 'image', src: '/assets/do-board/IMG_8864.jpeg', alt: 'V2 Laser Cut' },
             { type: 'image', src: '/assets/do-board/Do_Board_Image_8873.jpeg', alt: 'All iterations' },
             { type: 'image', src: '/assets/do-board/Dec_21_2021_Photo_(1).jpeg', alt: 'Design Drawing' },
@@ -110,6 +118,7 @@ export const projects: Project[] = [
         title: 'XR',
         description: 'AR and VR projects including Snapchat Lenses (Farm Animal, Furniture Placement, Paper Sailboat, Retro Radio) and Photogrammetry. \nClick the squares icon in the corner of each video to view the lens in Snapchat.',
         tags: ['AR', 'VR', 'Snapchat Lens', 'Photogrammetry'],
+        columns: 4,
         media: [
             { type: 'video', src: '/assets/xr/Snapchat_Video_(2).mp4', description: 'Farm Animal Lens', qrCode: '/assets/xr/image.png' },
             { type: 'video', src: '/assets/xr/Snapchat-1064081822.mp4', description: 'Furniture Lens', qrCode: '/assets/xr/image 1.png' },

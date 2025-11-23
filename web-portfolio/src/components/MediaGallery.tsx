@@ -5,15 +5,55 @@ interface MediaItem {
     src: string;
     alt?: string;
     description?: string | React.ReactNode;
+    descriptionTitle?: string;
     fullWidth?: boolean;
     qrCode?: string;
 }
 
 interface MediaGalleryProps {
     media: MediaItem[];
+    columns?: number;
 }
 
-const MediaGallery: React.FC<MediaGalleryProps> = ({ media }) => {
+const MediaDescription: React.FC<{ title?: string; body?: string | React.ReactNode }> = ({ title, body }) => {
+    const [isOpen, setIsOpen] = React.useState(false);
+
+    // If there is no body, just show the title (if it exists)
+    if (!body) {
+        return title ? (
+            <div className="mt-3 px-1" onClick={(e) => e.stopPropagation()}>
+                <div className="font-bold font-mono text-lg text-neo-black">
+                    {title}
+                </div>
+            </div>
+        ) : null;
+    }
+
+    return (
+        <div className="mt-3 px-1" onClick={(e) => e.stopPropagation()}>
+            <div className="font-bold font-mono text-lg text-neo-black">
+                {title || "Description"}
+            </div>
+
+            <div className={`grid transition-all duration-300 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100 mt-2' : 'grid-rows-[0fr] opacity-0'}`}>
+                <div className="overflow-hidden">
+                    <div className="font-mono text-neo-black whitespace-pre-wrap text-base">
+                        {body}
+                    </div>
+                </div>
+            </div>
+
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="text-ski-orange font-bold font-mono hover:underline text-sm uppercase mt-1"
+            >
+                {isOpen ? 'Read Less' : 'Read More...'}
+            </button>
+        </div>
+    );
+};
+
+const MediaGallery: React.FC<MediaGalleryProps> = ({ media, columns = 2 }) => {
     const [selectedMedia, setSelectedMedia] = React.useState<MediaItem | null>(null);
 
     if (!media || media.length === 0) return null;
@@ -34,13 +74,21 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ media }) => {
         };
     }, [selectedMedia]);
 
+    // Dynamic grid class based on columns prop
+    const gridClass = {
+        1: 'md:grid-cols-1',
+        2: 'md:grid-cols-2',
+        3: 'md:grid-cols-3',
+        4: 'md:grid-cols-4',
+    }[columns] || 'md:grid-cols-2';
+
     return (
         <>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 items-start">
+            <div className={`grid grid-cols-1 ${gridClass} gap-8 mt-8 items-start`}>
                 {media.map((item, index) => (
                     <div
                         key={index}
-                        className={`border-4 border-neo-black shadow-neo bg-white p-2 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all duration-200 cursor-pointer group ${item.fullWidth ? 'md:col-span-2' : ''}`}
+                        className={`border-4 border-neo-black shadow-neo bg-white p-2 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all duration-200 cursor-pointer group ${item.fullWidth ? `md:col-span-${columns}` : ''}`}
                         onClick={() => item.type !== 'iframe' && setSelectedMedia(item)}
                     >
                         {item.type === 'video' ? (
@@ -90,10 +138,8 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ media }) => {
                         )}
 
                         {/* Description */}
-                        {item.description && (
-                            <div className="mt-3 text-lg font-mono text-neo-black px-1 whitespace-pre-wrap">
-                                {item.description}
-                            </div>
+                        {(item.description || item.descriptionTitle) && (
+                            <MediaDescription title={item.descriptionTitle} body={item.description} />
                         )}
                     </div>
                 ))}
@@ -134,9 +180,18 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ media }) => {
                                     className="max-h-[80vh] w-auto max-w-full object-contain"
                                 />
                             )}
-                            {selectedMedia.description && (
-                                <div className="mt-4 text-xl font-mono text-white text-center max-w-3xl mx-auto whitespace-pre-wrap">
-                                    {selectedMedia.description}
+                            {(selectedMedia.description || selectedMedia.descriptionTitle) && (
+                                <div className="mt-4 text-white text-center max-w-3xl mx-auto">
+                                    {selectedMedia.descriptionTitle && (
+                                        <div className="text-2xl font-bold font-mono mb-2">
+                                            {selectedMedia.descriptionTitle}
+                                        </div>
+                                    )}
+                                    {selectedMedia.description && (
+                                        <div className="text-xl font-mono whitespace-pre-wrap">
+                                            {selectedMedia.description}
+                                        </div>
+                                    )}
                                 </div>
                             )}
                         </div>

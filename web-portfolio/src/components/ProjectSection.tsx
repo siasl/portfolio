@@ -69,7 +69,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({ project, index }) => {
                     </div>
                 </div>
 
-                <MediaGallery media={project.media} />
+                <MediaGallery media={project.media} columns={project.columns} />
             </div>
         </section>
     );

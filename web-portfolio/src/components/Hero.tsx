@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin } from 'lucide-react';
 
 const Hero: React.FC = () => {
     return (
@@ -23,37 +22,19 @@ const Hero: React.FC = () => {
                     initial={{ y: 100, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.8, ease: "circOut" }}
-                    className="bg-neo-white border-4 border-neo-black shadow-neo-lg p-8 md:p-16 transform -rotate-2 hover:rotate-0 transition-transform duration-300 mb-8"
+                    className="bg-neo-white border-4 border-neo-black shadow-neo-lg p-8 md:p-16 transform -rotate-2"
                 >
                     <h1 className="text-6xl md:text-9xl font-black font-display uppercase tracking-tighter leading-none">
                         Silas<br />Howe
                     </h1>
                 </motion.div>
 
-                <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ delay: 0.5, type: "spring" }}
-                    className="flex flex-wrap justify-center gap-4 text-xl md:text-2xl font-bold"
-                >
-                    <div className="bg-granite-gray text-white border-4 border-neo-black px-4 py-2 transform -rotate-1 flex items-center gap-2">
-                        <MapPin size={20} /> NH
-                    </div>
-                    <div className="text-4xl">→</div>
-                    <div className="bg-red-rock text-white border-4 border-neo-black px-4 py-2 transform rotate-1 flex items-center gap-2">
-                        <MapPin size={20} /> CO
-                    </div>
-                    <div className="text-4xl">→</div>
-                    <div className="bg-salt-white text-neo-black border-4 border-neo-black px-4 py-2 transform -rotate-1 flex items-center gap-2">
-                        <MapPin size={20} /> SLC
-                    </div>
-                </motion.div>
 
                 <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.8 }}
-                    className="mt-8 text-xl font-bold bg-ski-orange text-white inline-block px-4 py-1 border-2 border-neo-black transform rotate-1"
+                    className="mt-8 text-xl font-bold bg-ski-orange text-white inline-block px-4 py-1 border-2 border-neo-black transform rotate-1 hover:rotate-0 transition-transform duration-300"
                 >
                     DESIGN • TECH
                 </motion.p>
@@ -113,7 +94,7 @@ const Hero: React.FC = () => {
                     </motion.div>
                 ))}
             </div>
-        </section>
+        </section >
     );
 };
 
