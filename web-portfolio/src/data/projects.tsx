@@ -137,8 +137,8 @@ export const projects: Project[] = [
             { type: 'video', src: '/assets/xr/Snapchat_Video_(1).mp4', descriptionTitle: 'Sailboat Lens', qrCode: '/assets/xr/image 2.png' },
             { type: 'video', src: '/assets/xr/Screen_Recording_Feb_24_2021_from_Google_Photos.mp4', descriptionTitle: 'Retro Radio Lens' },
             { type: 'iframe', src: 'https://panoraven.com/en/embed/LtyX6M4M7S', descriptionTitle: 'An experimental VR environment I created in Photoshop. Then I exported the image to Audacity, an audio editor where I was able to manipulate the raw data of the image to create the distortions you see now. \n---\nClick and drag on it. Click the full screen button to view it in full screen. If you have VR glasses, even better!', fullWidth: true },
-            { type: 'iframe', src: 'https://sketchfab.com/models/055f250172434630ab35bf64f4a211bd/embed' },
-            { type: 'iframe', src: 'https://sketchfab.com/models/816e7f9cdefe48a9b48082471d2edbce/embed' },
+            { type: 'iframe', src: 'https://sketchfab.com/models/055f250172434630ab35bf64f4a211bd/embed', descriptionTitle: '3D scan of one of my college bedrooms', description: 'I used this as a canvas for VR art using Open Brush. Unfortunately, my computer was stolen after this class so I don\'t have the files anymore.' },
+            { type: 'iframe', src: 'https://sketchfab.com/models/816e7f9cdefe48a9b48082471d2edbce/embed', descriptionTitle: '3D scan of native american drum' },
         ]
     },
     {
