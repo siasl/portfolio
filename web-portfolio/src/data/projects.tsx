@@ -95,6 +95,18 @@ export const projects: Project[] = [
         ]
     },
     {
+        id: 'video',
+        title: 'Video',
+        description: 'Video projects.',
+        tags: ['Video', 'Editing'],
+        media: [
+            { type: 'video', src: '/assets/video/Perspective_3.mp4', poster: '/assets/video/frisbeePoster.png', descriptionTitle: 'Frisbee Video - 8.2M views, 1M Likes on Tiktok' },
+            { type: 'video', src: '/assets/video/Ball_Persepective_video.mp4', poster: '/assets/video/ballPoster.png', descriptionTitle: 'Ball Video - 2.7M views, 107.3k Likes on Tiktok' },
+            { type: 'video', src: '/assets/video/Video_Normal_Size.mp4', poster: '/assets/video/CarPoster.png', descriptionTitle: 'Car Video - Playing with perspective, car' },
+            { type: 'iframe', src: 'https://www.youtube.com/embed/SHSzfIY1MVs', descriptionTitle: 'Ski Bum - Basic Filmmaking Final Project' }
+        ]
+    },
+    {
         id: 'photography',
         title: 'Photography',
         description: 'A collection of my photography work.',
@@ -111,18 +123,6 @@ export const projects: Project[] = [
             { type: 'image', src: '/assets/photography/Photography/Photo Sept 27 2024 (4)/Photo_Sept_27_2024_(4).jpg', alt: 'Photo Sept 27 2024' },
             { type: 'image', src: '/assets/photography/Photography/Monadnock Milky Way/Monadnock_Milky_Way.jpg', alt: 'Monadnock Milky Way' },
             { type: 'image', src: '/assets/photography/Photography/Photo Jul 26 2018/Photo_Jul_26_2018.jpg', alt: 'Photo Jul 26 2018' }
-        ]
-    },
-    {
-        id: 'video',
-        title: 'Video',
-        description: 'Video projects.',
-        tags: ['Video', 'Editing'],
-        media: [
-            { type: 'video', src: '/assets/video/Perspective_3.mp4', poster: '/assets/video/frisbeePoster.png', descriptionTitle: 'Frisbee Video - 8.2M views, 1M Likes on Tiktok' },
-            { type: 'video', src: '/assets/video/Ball_Persepective_video.mp4', poster: '/assets/video/ballPoster.png', descriptionTitle: 'Ball Video - 2.7M views, 107.3k Likes on Tiktok' },
-            { type: 'video', src: '/assets/video/Video_Normal_Size.mp4', poster: '/assets/video/CarPoster.png', descriptionTitle: 'Car Video - Playing with perspective, car' },
-            { type: 'iframe', src: 'https://www.youtube.com/embed/SHSzfIY1MVs', descriptionTitle: 'Ski Bum - Basic Filmmaking Final Project' }
         ]
     },
     {
@@ -164,12 +164,5 @@ export const projects: Project[] = [
         links: [
             { label: 'Howe_Quaranzine.pdf', url: '/assets/book-arts/Howe_Quaranzine.pdf' }
         ]
-    },
-    {
-        id: 'ai-disclosure',
-        title: 'AI Disclosure',
-        description: "The use of AI in creative and coding projects is on the rise and everyone seems to have their own beliefs on the morality of it. For the sake of transparency, I want to disclose that I \"vibe coded\" the template of this website. I'm still grappling with what types of AI usage I like and don't like. I don't believe it should be used to generate images or videos to replace human creativity. I chose to use it on this website because I felt it was in the same vein as using an out of the box template from a website builder like Squarespace or Wix. In those cases, I wouldn't be building the site from scratch either and would be building off of someone else's work. I'm very open to discussing this topic and would love to hear your thoughts. Feel free to reach out to me via email or on LinkedIn.",
-        tags: [],
-        media: []
     }
 ];

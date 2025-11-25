@@ -12,20 +12,21 @@ const Hero: React.FC = () => {
             </div>
 
             {/* Trail Map Line Decoration */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20" xmlns="http://www.w3.org/2000/svg">
+            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-50" xmlns="http://www.w3.org/2000/svg">
                 <path d="M-100 100 Q 200 600 500 300 T 1200 800" stroke="#FF4500" strokeWidth="10" fill="none" strokeDasharray="20 20" />
                 <path d="M0 800 Q 400 200 800 500 T 1600 200" stroke="#20B2AA" strokeWidth="10" fill="none" />
+                <path d="M0 8000 Q 400 200 800 500 T 1600 200" stroke="#20B2AA" strokeWidth="10" fill="none" />
             </svg>
 
-            <div className="relative z-10 text-center max-w-4xl px-4">
+            <div className="relative z-10 text-center max-w-4xl px-4 ">
                 <motion.div
                     initial={{ y: 100, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.8, ease: "circOut" }}
-                    className="bg-neo-white border-4 border-neo-black shadow-neo-lg p-8 md:p-16 transform -rotate-2"
+                    className="bg-white border-4 border-neo-black shadow-neo-lg p-8 md:p-16 transform -rotate-2 "
                 >
                     <h1 className="text-6xl md:text-9xl font-black font-display uppercase tracking-tighter leading-none">
-                        Silas<br />Howe
+                        Silas<br />Howe <br />Portfolio
                     </h1>
                 </motion.div>
 
@@ -34,7 +35,7 @@ const Hero: React.FC = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.8 }}
-                    className="mt-8 text-xl font-bold bg-ski-orange text-white inline-block px-4 py-1 border-2 border-neo-black transform rotate-1 hover:rotate-0 transition-transform duration-300"
+                    className="mt-8 text-xl font-bold bg-ski-orange text-white inline-block px-4 py-1 border-2 border-neo-black transform hover:rotate-10 transition-transform duration-300"
                 >
                     DESIGN • TECH
                 </motion.p>
@@ -44,17 +45,16 @@ const Hero: React.FC = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1.0 }}
-                    className="mt-12 flex flex-wrap justify-center md:grid md:grid-cols-4 gap-4 md:gap-8"
+                    className="mt-12 flex flex-wrap justify-center gap-4 md:gap-8 max-w-4xl mx-auto"
                 >
                     {[
                         { id: 'call-light', label: 'Call Light' },
                         { id: 'do-board', label: 'Do Board' },
-                        { id: 'book-arts', label: 'Book Arts' },
                         { id: 'personal-automations', label: 'Automations' },
-                        { id: 'photography', label: 'Photography' },
                         { id: 'video', label: 'Video' },
+                        { id: 'photography', label: 'Photography' },
                         { id: 'xr', label: 'XR' },
-                        { id: 'ai-disclosure', label: 'AI Disclosure' },
+                        { id: 'book-arts', label: 'Book Arts' },
                     ].map((item) => (
                         <a
                             key={item.id}
