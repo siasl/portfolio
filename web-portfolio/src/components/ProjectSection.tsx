@@ -8,7 +8,7 @@ interface ProjectSectionProps {
     index: number;
 }
 
-const ProjectSection: React.FC<ProjectSectionProps> = ({ project, index }) => {
+const ProjectSection: React.FC<ProjectSectionProps> = ({ project }) => {
     return (
         <section id={project.id} className="mb-16 max-w-5xl mx-auto px-4">
             <div className="glass-panel rounded-xl overflow-hidden shadow-window">
