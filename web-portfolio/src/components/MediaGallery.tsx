@@ -19,11 +19,10 @@ interface MediaGalleryProps {
 const MediaDescription: React.FC<{ title?: string; body?: string | React.ReactNode }> = ({ title, body }) => {
     const [isOpen, setIsOpen] = React.useState(false);
 
-    // If there is no body, just show the title (if it exists)
     if (!body) {
         return title ? (
-            <div className="mt-3 px-1" onClick={(e) => e.stopPropagation()}>
-                <div className="font-bold font-mono text-lg text-neo-black">
+            <div className="mt-2 px-1">
+                <div className="font-medium text-sm text-white/90">
                     {title}
                 </div>
             </div>
@@ -31,14 +30,14 @@ const MediaDescription: React.FC<{ title?: string; body?: string | React.ReactNo
     }
 
     return (
-        <div className="mt-3 px-1" onClick={(e) => e.stopPropagation()}>
-            <div className="font-bold font-mono text-lg text-neo-black">
+        <div className="mt-2 px-1">
+            <div className="font-medium text-sm text-white/90">
                 {title || "Description"}
             </div>
 
             <div className={`grid transition-all duration-300 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100 mt-2' : 'grid-rows-[0fr] opacity-0'}`}>
                 <div className="overflow-hidden">
-                    <div className="font-mono text-neo-black whitespace-pre-wrap text-base">
+                    <div className="text-white/80 whitespace-pre-wrap text-sm bg-white/5 rounded-lg p-3 border border-white/10">
                         {body}
                     </div>
                 </div>
@@ -46,7 +45,7 @@ const MediaDescription: React.FC<{ title?: string; body?: string | React.ReactNo
 
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="text-ski-orange font-bold font-mono hover:underline text-sm uppercase mt-1"
+                className="mt-2 text-xs font-medium text-blue-300 hover:text-blue-200 transition-colors"
             >
                 {isOpen ? 'Read Less' : 'Read More...'}
             </button>
@@ -55,44 +54,20 @@ const MediaDescription: React.FC<{ title?: string; body?: string | React.ReactNo
 };
 
 const ScrollableDescription: React.FC<{ title?: string; body?: string | React.ReactNode }> = ({ title, body }) => {
-    const contentRef = React.useRef<HTMLDivElement>(null);
-    const [showScrollIndicator, setShowScrollIndicator] = React.useState(false);
-
-    const checkScroll = () => {
-        if (contentRef.current) {
-            const { scrollTop, scrollHeight, clientHeight } = contentRef.current;
-            // Show indicator if there is more content to scroll to (with a small buffer)
-            setShowScrollIndicator(scrollHeight > clientHeight && scrollTop + clientHeight < scrollHeight - 10);
-        }
-    };
-
-    React.useEffect(() => {
-        checkScroll();
-        window.addEventListener('resize', checkScroll);
-        return () => window.removeEventListener('resize', checkScroll);
-    }, [title, body]);
-
     return (
-        <div className="relative mt-4 max-w-3xl mx-auto flex-shrink-0 max-h-[30vh] flex flex-col min-h-0">
-            <div
-                ref={contentRef}
-                onScroll={checkScroll}
-                className="overflow-y-auto px-4 pb-2 text-white text-center"
-            >
+        <div className="relative mt-4 max-w-3xl mx-auto flex-shrink-0 max-h-[30vh] flex flex-col min-h-0 bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/10">
+            <div className="overflow-y-auto px-2 pb-2 text-white text-center custom-scrollbar">
                 {title && (
-                    <div className="text-2xl font-bold font-mono mb-2 sticky top-0 bg-black py-1 z-10">
+                    <div className="text-lg font-bold mb-2 sticky top-0 bg-transparent py-1 z-10">
                         {title}
                     </div>
                 )}
                 {body && (
-                    <div className="text-xl font-mono whitespace-pre-wrap">
+                    <div className="text-base whitespace-pre-wrap text-left text-white/90">
                         {body}
                     </div>
                 )}
             </div>
-            {showScrollIndicator && (
-                <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-black to-transparent pointer-events-none" />
-            )}
         </div>
     );
 };
@@ -118,7 +93,6 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ media, columns = 2 }) => {
         };
     }, [selectedMedia]);
 
-    // Dynamic grid class based on columns prop
     const gridClass = {
         1: 'md:grid-cols-1',
         2: 'md:grid-cols-2',
@@ -128,61 +102,64 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ media, columns = 2 }) => {
 
     return (
         <>
-            <div className={`grid grid-cols-1 ${gridClass} gap-8 mt-8 items-start`}>
+            <div className={`grid grid-cols-1 ${gridClass} gap-6 mt-4 items-start`}>
                 {media.map((item, index) => (
                     <div
                         key={index}
-                        className={`border-4 border-neo-black shadow-neo bg-white p-2 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all duration-200 cursor-pointer group ${item.fullWidth ? 'md:col-span-full' : ''}`}
-                        onClick={() => item.type !== 'iframe' && setSelectedMedia(item)}
+                        className={`bg-white/5 p-2 rounded-xl border border-white/10 hover:bg-white/10 transition-colors ${item.fullWidth ? 'md:col-span-full' : ''}`}
                     >
-                        {item.type === 'video' ? (
-                            <div className="relative">
-                                <video
-                                    src={item.src}
-                                    poster={item.poster}
-                                    className="w-full h-auto border-2 border-neo-black transition-all duration-500 pointer-events-none"
-                                />
-                                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                                    <div className="bg-neo-white border-2 border-neo-black p-3 rounded-full shadow-neo-sm group-hover:scale-110 transition-transform duration-200">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" className="text-neo-black">
-                                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                                        </svg>
+                        <div
+                            className="rounded-lg overflow-hidden cursor-pointer group relative aspect-video bg-black/20"
+                            onClick={() => item.type !== 'iframe' && setSelectedMedia(item)}
+                        >
+                            {item.type === 'video' ? (
+                                <div className="relative w-full h-full">
+                                    <video
+                                        src={item.src}
+                                        poster={item.poster}
+                                        className="w-full h-full object-cover pointer-events-none"
+                                    />
+                                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                        <div className="bg-white/20 backdrop-blur-sm p-3 rounded-full group-hover:scale-110 transition-transform duration-200">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="text-white">
+                                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                            </svg>
+                                        </div>
                                     </div>
+                                    {item.qrCode && (
+                                        <button
+                                            className="absolute top-2 right-2 bg-white/20 p-2 rounded-lg backdrop-blur-sm hover:bg-white/30 transition-colors z-20 pointer-events-auto"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setSelectedMedia({ type: 'image', src: item.qrCode!, alt: 'Snapchat QR Code' });
+                                            }}
+                                            title="Show Snapcode"
+                                        >
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                                                <rect x="3" y="3" width="7" height="7"></rect>
+                                                <rect x="14" y="3" width="7" height="7"></rect>
+                                                <rect x="14" y="14" width="7" height="7"></rect>
+                                                <rect x="3" y="14" width="7" height="7"></rect>
+                                            </svg>
+                                        </button>
+                                    )}
                                 </div>
-                                {item.qrCode && (
-                                    <button
-                                        className="absolute top-2 right-2 bg-neo-white p-2 border-2 border-neo-black shadow-neo-sm hover:bg-neo-green transition-colors z-20 pointer-events-auto"
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            setSelectedMedia({ type: 'image', src: item.qrCode!, alt: 'Snapchat QR Code' });
-                                        }}
-                                        title="Show Snapcode"
-                                    >
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                            <rect x="3" y="3" width="7" height="7"></rect>
-                                            <rect x="14" y="3" width="7" height="7"></rect>
-                                            <rect x="14" y="14" width="7" height="7"></rect>
-                                            <rect x="3" y="14" width="7" height="7"></rect>
-                                        </svg>
-                                    </button>
-                                )}
-                            </div>
-                        ) : item.type === 'iframe' ? (
-                            <iframe
-                                src={item.src}
-                                title={item.alt || 'Embedded content'}
-                                className="w-full h-full aspect-video border-2 border-neo-black"
-                                allowFullScreen
-                            />
-                        ) : (
-                            <img
-                                src={item.src}
-                                alt={item.alt || 'Project media'}
-                                className="w-full h-auto border-2 border-neo-black transition-all duration-500"
-                            />
-                        )}
+                            ) : item.type === 'iframe' ? (
+                                <iframe
+                                    src={item.src}
+                                    title={item.alt || 'Embedded content'}
+                                    className="w-full h-full"
+                                    allowFullScreen
+                                />
+                            ) : (
+                                <img
+                                    src={item.src}
+                                    alt={item.alt || 'Project media'}
+                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                />
+                            )}
+                        </div>
 
-                        {/* Description */}
                         {(item.description || item.descriptionTitle) && (
                             <MediaDescription title={item.descriptionTitle} body={item.description} />
                         )}
@@ -193,25 +170,25 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ media, columns = 2 }) => {
             {/* Lightbox Modal */}
             {selectedMedia && (
                 <div
-                    className="fixed inset-0 z-[200] bg-neo-black/90 flex items-center justify-center p-4 md:p-8"
+                    className="fixed inset-0 z-[200] bg-black/80 backdrop-blur-md flex items-center justify-center p-4 md:p-8"
                     onClick={() => setSelectedMedia(null)}
                 >
-                    <div className="relative max-w-7xl max-h-full w-full flex items-center justify-center">
+                    <div className="relative max-w-7xl max-h-full w-full flex flex-col items-center justify-center">
                         <button
                             onClick={() => setSelectedMedia(null)}
-                            className="absolute -top-12 right-0 text-white hover:text-neo-green transition-colors"
+                            className="absolute -top-12 right-0 text-white/70 hover:text-white transition-colors"
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                 <line x1="18" y1="6" x2="6" y2="18"></line>
                                 <line x1="6" y1="6" x2="18" y2="18"></line>
                             </svg>
                         </button>
 
                         <div
-                            className="border-4 border-neo-white shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] bg-black p-2 w-full max-w-6xl h-[90vh] flex flex-col"
+                            className="w-full max-w-6xl h-[80vh] flex flex-col items-center justify-center"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <div className="flex-1 min-h-0 relative w-full bg-black">
+                            <div className="flex-1 min-h-0 relative w-full rounded-xl overflow-hidden shadow-2xl bg-black">
                                 {selectedMedia.type === 'video' ? (
                                     <video
                                         src={selectedMedia.src}

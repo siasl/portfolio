@@ -8,17 +8,21 @@ function App() {
     <Layout>
       <Hero />
 
-      <div className="relative z-20">
+      <div className="relative z-10 pb-8">
         {projects.map((project, index) => (
           <ProjectSection key={project.id} project={project} index={index} />
         ))}
       </div>
 
-      <footer className="bg-neo-black text-neo-white py-12 border-t-4 border-neo-white text-center">
-        <p className="text-xl font-bold uppercase">
+      <footer className="text-center py-8 text-white/60 text-sm">
+        <p className="mb-2">
           © {new Date().getFullYear()} Silas Howe
         </p>
-        <a href="https://www.linkedin.com/in/silashowe" target="_blank">LinkedIn</a> | <a href="mailto:silashowe1999@gmail.com" target="_blank">Email</a>
+        <div className="flex justify-center gap-4">
+          <a href="https://www.linkedin.com/in/silashowe" target="_blank" className="hover:text-white transition-colors">LinkedIn</a>
+          <span>•</span>
+          <a href="mailto:silashowe1999@gmail.com" target="_blank" className="hover:text-white transition-colors">Email</a>
+        </div>
       </footer>
     </Layout>
   );

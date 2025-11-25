@@ -9,67 +9,62 @@ interface ProjectSectionProps {
 }
 
 const ProjectSection: React.FC<ProjectSectionProps> = ({ project, index }) => {
-    const isEven = index % 2 === 0;
-    const bgColor = isEven ? 'bg-neo-white' : 'bg-neo-green';
-
     return (
-        <section id={project.id} className={`py-20 border-b-4 border-neo-black ${bgColor}`}>
-            <div className="container mx-auto px-4 md:px-8">
-                <div className="flex flex-col md:flex-row gap-8 items-start mb-12">
-                    <div className="flex-1">
-                        <h2 className="text-5xl md:text-7xl font-black uppercase mb-6 break-words leading-none">
-                            <span className="bg-neo-black text-neo-white px-2 box-decoration-clone">
-                                {project.title}
-                            </span>
-                        </h2>
-
-                        <div className="flex flex-wrap gap-3 mb-6">
-                            {project.tags.map((tag, i) => {
-                                // Assign trail difficulty based on index for visual flair
-                                // 0: Green Circle, 1: Blue Square, 2: Black Diamond, 3: Double Black Diamond
-                                const typeIndex = i % 4;
-                                const difficulty = ['●', '■', '♦', '♦♦'][typeIndex];
-
-                                // Colors matching ski trail ratings
-                                let colorClass = '';
-                                if (typeIndex === 0) colorClass = 'text-[#009E60] pb-0.5'; // Green
-                                else if (typeIndex === 1) colorClass = 'text-[#007FFF] pb-1'; // Blue
-                                else if (typeIndex === 2) colorClass = 'text-black'; // Black
-                                else colorClass = 'text-[#000000]'; // Double Black
-
-                                return (
-                                    <span key={tag} className="border-2 border-neo-black px-3 py-1 font-bold text-sm uppercase bg-white shadow-neo-sm flex items-center gap-2">
-                                        <span className={`text-lg leading-none ${colorClass}`}>{difficulty}</span>
-                                        {tag}
-                                    </span>
-                                );
-                            })}
-                        </div>
-
-                        <div className="text-xl md:text-2xl font-medium border-l-4 border-neo-black pl-6 whitespace-pre-wrap">
-                            {project.description}
-                        </div>
-
-                        {project.links && project.links.length > 0 && (
-                            <div className="mt-8 flex flex-col gap-4">
-                                {project.links.map(link => (
-                                    <a
-                                        key={link.url}
-                                        href={link.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 text-lg font-bold hover:underline decoration-4 underline-offset-4"
-                                    >
-                                        <ExternalLink size={24} />
-                                        {link.label}
-                                    </a>
-                                ))}
-                            </div>
-                        )}
+        <section id={project.id} className="mb-16 max-w-5xl mx-auto px-4">
+            <div className="glass-panel rounded-xl overflow-hidden shadow-window">
+                {/* Window Title Bar */}
+                <div className="bg-white/10 backdrop-blur-md px-4 py-3 flex items-center border-b border-white/10">
+                    <div className="flex gap-2">
+                        <div className="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e]"></div>
+                        <div className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123]"></div>
+                        <div className="w-3 h-3 rounded-full bg-[#27c93f] border border-[#1aab29]"></div>
                     </div>
+                    <div className="flex-1 text-center text-sm font-medium text-white/80 flex items-center justify-center gap-2">
+                        <span>📁</span>
+                        <span>{project.title}</span>
+                    </div>
+                    <div className="w-16"></div>
                 </div>
 
-                <MediaGallery media={project.media} columns={project.columns} />
+                <div className="p-6">
+                    <div className="flex flex-col md:flex-row gap-8 items-start mb-8">
+                        <div className="flex-1 w-full">
+                            {/* Tags */}
+                            <div className="flex flex-wrap gap-2 mb-4">
+                                {project.tags.map((tag) => (
+                                    <span key={tag} className="px-3 py-1 text-xs font-medium bg-blue-500/20 text-blue-100 rounded-full border border-blue-400/20">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+
+                            {/* Description */}
+                            <div className="bg-black/20 rounded-lg p-6 mb-6 font-system text-base leading-relaxed text-white/90 border border-white/5">
+                                {project.description}
+                            </div>
+
+                            {/* Links */}
+                            {project.links && project.links.length > 0 && (
+                                <div className="flex flex-wrap gap-4">
+                                    {project.links.map(link => (
+                                        <a
+                                            key={link.url}
+                                            href={link.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors text-sm font-medium text-white border border-white/10"
+                                        >
+                                            <ExternalLink size={16} />
+                                            {link.label}
+                                        </a>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    <MediaGallery media={project.media} columns={project.columns} />
+                </div>
             </div>
         </section>
     );
