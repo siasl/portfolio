@@ -20,6 +20,24 @@ export interface Project {
         label: string;
         url: string;
     }[];
+    sections?: ProjectSectionData[];
+    layout?: 'grid' | 'carousel';
+}
+
+export interface ProjectSectionData {
+    title?: string;
+    description?: string | React.ReactNode;
+    layout?: 'grid' | 'carousel';
+    media: {
+        type: 'image' | 'video' | 'iframe';
+        src: string;
+        alt?: string;
+        description?: string | React.ReactNode;
+        descriptionTitle?: string;
+        fullWidth?: boolean;
+        qrCode?: string;
+        poster?: string;
+    }[];
 }
 
 export const projects: Project[] = [
@@ -28,12 +46,12 @@ export const projects: Project[] = [
         title: 'Call Light',
         description: (
             <>
-                <b>Computer Science Major Senior Project</b>
-                {'\n'}I served as product manager, designer and front end developer. We came up with a prototype of a novel way for patients to communicate with their nurses while in the hospital.
-                {'\n'}{'\n'}
-                The purpose of this project was to address antiquated communication between nurses and patients on the medical surgical floor of the hospital. In this environment a nurse is frequently responsible for multiple patients. The current system is inefficient because the only way the patient can contact a nurse is by activating a light above their door via a button. While a call light is usually not an emergency, as those are typically caught in real time through existing technologies, the nurse must respond as quickly as possible because there is no way of knowing why the light has been activated without speaking to the patient. After the light has been activated, the nurse frequently has to make trips to other parts of the floor before returning to meet the needs of the patient.
-                {'\n'}{'\n'}
-                There are so many steps that are required to meet the needs of a patient that simply having a patient turning on their call light becomes a very time consuming process. This can be compounded by the presence of COVID-19 patients who require the nurse to apply and remove additional protective equipment every time the enter and leave the patient’s room. Our project will introduce a way for an alert and aware patient to be in direct contact with their nurse via an application. This app will allow for the patient to make requests of the nurse and receive confirmation from the nurse that the request will be fulfilled. This allows nurses to remove unneeded trips to and from a patients room and prioritize their current task based on time sensitivity. An important feature of this app is that it will also be designed to end any ability for a patient to contact a nurse either when the nurse’s shift is over or when the patient is discharged from the medical surgical unit.
+                An app for improving communication between nurses and patients.
+                <ul className="list-disc pl-5 mt-2 space-y-2">
+                    <li>Replaces antiquated binary (on/off) call light system with easy to use menus allowing for easier communication of needs.</li>
+                    <li>Saves nurses time because they don't have to enter the room to find out what is being requested when a call light is turned on.</li>
+                    <li>Enhanced time savings and safety improvements during the COVID-19 pandemic because PPE must be put on and taken off when entering and exiting infected patients' rooms.</li>
+                </ul>
             </>
         ),
         tags: ['Product Management', 'Design', 'Frontend'],
@@ -70,6 +88,7 @@ export const projects: Project[] = [
         description: 'A tactile to-do list I designed. Inspired by mechanical keyboards, each row has a distinct and satisfying tactility as you erase each task you complete. Originally, I was planning to light up LEDs to indicate a task being completed, but as I iterated on the design, I decided simple was better.',
         tags: ['Product Design', 'Hardware', 'Prototyping'],
         columns: 2,
+        layout: 'carousel',
         media: [
             { type: 'video', src: '/assets/do-board/Do_Board_Video_V2.mp4', descriptionTitle: 'Do Board Promo Video', fullWidth: true, poster: '/assets/do-board/DoBoard_Poster.png' },
             { type: 'image', src: '/assets/do-board/Do_Board_IMG_8855.jpeg', alt: 'Do Board Prototype', descriptionTitle: 'Close-up of the finished Do Board prototype.' },
@@ -111,24 +130,24 @@ export const projects: Project[] = [
         title: 'Photography',
         description: 'A collection of my photography work.',
         tags: ['Photography'],
+        layout: 'grid',
         media: [
-            { type: 'image', src: '/assets/photography/Photography/Ski Hill Star Trails/Ski_Hill_Star_Trails.jpeg', alt: 'Ski Hill Star Trails' },
-            { type: 'image', src: '/assets/photography/Photography/Nepal 70/Nepal_70.jpg', alt: 'Nepal 70' },
-            { type: 'image', src: '/assets/photography/Photography/Nepal Photo/Nepal_Photo.jpg', alt: 'Nepal Photo' },
-            { type: 'image', src: '/assets/photography/Photography/Nepal Photo (1)/Nepal_Photo_(1).jpg', alt: 'Nepal Photo 1' },
-            { type: 'image', src: '/assets/photography/Photography/Nepal Photo (2)/Nepal_Photo_(2).jpg', alt: 'Nepal Photo 2' },
             { type: 'image', src: '/assets/photography/Photography/Photo Jun 15 2019 (1)/Photo_Jun_15_2019_(1).jpeg', alt: 'Photo Jun 15 2019' },
-            { type: 'image', src: '/assets/photography/Photography/Photo Sept 27 2024 (3)/Photo_Sept_27_2024_(3).jpg', alt: 'Photo Sept 27 2024' },
-            { type: 'image', src: '/assets/photography/Photography/Photo Sept 27 2024 (2)/Photo_Sept_27_2024_(2).jpg', alt: 'Photo Sept 27 2024' },
+            { type: 'image', src: '/assets/photography/Photography/Nepal 70/Nepal_70.jpg', alt: 'Nepal 70' },
+            { type: 'image', src: '/assets/photography/Photography/Photo May 23 2019.jpeg', alt: 'Photo May 23 2019' },
+            { type: 'image', src: '/assets/photography/Photography/Nepal Photo (1)/Nepal_Photo_(1).jpg', alt: 'Nepal Photo 1' },
             { type: 'image', src: '/assets/photography/Photography/Photo Sept 27 2024 (4)/Photo_Sept_27_2024_(4).jpg', alt: 'Photo Sept 27 2024' },
+            { type: 'image', src: '/assets/photography/Photography/Photo Sept 27 2024 (3)/Photo_Sept_27_2024_(3).jpg', alt: 'Photo Sept 27 2024' },
+            { type: 'image', src: '/assets/photography/Photography/Ski Hill Star Trails/Ski_Hill_Star_Trails.jpeg', alt: 'Ski Hill Star Trails' },
             { type: 'image', src: '/assets/photography/Photography/Monadnock Milky Way/Monadnock_Milky_Way.jpg', alt: 'Monadnock Milky Way' },
-            { type: 'image', src: '/assets/photography/Photography/Photo Jul 26 2018/Photo_Jul_26_2018.jpg', alt: 'Photo Jul 26 2018' }
+            { type: 'image', src: '/assets/photography/Photography/Photo Jul 26 2018/Photo_Jul_26_2018.jpg', alt: 'Photo Jul 26 2018' },
+            { type: 'image', src: '/assets/photography/Photography/Monarch.jpg', alt: 'Monarch' },
         ]
     },
     {
         id: 'xr',
         title: 'XR',
-        description: 'AR and VR projects including Snapchat Lenses (Farm Animal, Furniture Placement, Paper Sailboat, Retro Radio) and Photogrammetry. \nClick the squares icon in the corner of each video to view the lens in Snapchat.',
+        description: <>AR and VR projects including Snapchat Lenses (Farm Animal, Furniture Placement, Paper Sailboat, Retro Radio) and Photogrammetry. <br></br><mark style={{ backgroundColor: '#fea888ff' }}>Click the squares icon in the corner of each video to view the lens in Snapchat.</mark></>,
         tags: ['AR', 'VR', 'Snapchat Lens', 'Photogrammetry'],
         columns: 4,
         media: [
@@ -145,24 +164,30 @@ export const projects: Project[] = [
         id: 'book-arts',
         title: 'Book Arts',
         columns: 4,
-        description: 'Tied Up - Monotype prints and book binding. A zine I designed in photoshop/illustrator.',
+        description: '',
         tags: ['Print', 'Design', 'Book Binding'],
-        media: [
-            { type: 'image', src: '/assets/book-arts/20201216_010544.jpg', alt: 'Book Art' },
-            { type: 'image', src: '/assets/book-arts/20201215_194819.jpg', alt: 'Book Art' },
-            { type: 'image', src: '/assets/book-arts/20201215_194841.jpg', alt: 'Book Art' },
-            { type: 'image', src: '/assets/book-arts/20201215_194849.jpg', alt: 'Book Art' },
-            { type: 'image', src: '/assets/book-arts/20201215_194859.jpg', alt: 'Book Art' },
-            { type: 'image', src: '/assets/book-arts/20201215_194906.jpg', alt: 'Book Art' },
-            { type: 'image', src: '/assets/book-arts/20201215_194916.jpg', alt: 'Book Art' },
-            { type: 'image', src: '/assets/book-arts/20201215_194924.jpg', alt: 'Book Art' },
-            { type: 'image', src: '/assets/book-arts/20201215_194932.jpg', alt: 'Book Art' },
-            { type: 'image', src: '/assets/book-arts/20201215_194938.jpg', alt: 'Book Art' },
-            { type: 'image', src: '/assets/book-arts/20201216_010601.jpg', alt: 'Book Art' },
-            { type: 'image', src: '/assets/book-arts/20201216_010606.jpg', alt: 'Book Art' },
-        ],
+        media: [],
         links: [
-            { label: 'Howe_Quaranzine.pdf', url: '/assets/book-arts/Howe_Quaranzine.pdf' }
+        ],
+        sections: [
+            {
+                title: 'Tied Up',
+                layout: 'grid',
+                description: 'Monotype prints and book binding.',
+                media: [
+                    { type: 'image', src: '/assets/book-arts/TiedUp_Cover.jpg', alt: 'Book Art', descriptionTitle: 'The binding' },
+                    { type: 'image', src: '/assets/book-arts/20201215_194859.jpg', alt: 'Book Art', descriptionTitle: 'One of the mono-type prints' },
+                ]
+            },
+            {
+                title: 'Popup Book Project',
+                layout: 'grid',
+                description: 'Excerpts from a popup book I created about a camping trip gone wrong.',
+                media: [
+                    { type: 'video', src: '/assets/book-arts/aspens_pop_up.mp4', alt: 'Aspen Pop Up Page', poster: '/assets/book-arts/aspens_poster.png', descriptionTitle: 'Walking thorugh the aspens at night' },
+                    { type: 'video', src: '/assets/book-arts/Trout_Pop_Up_Page.mp4', poster: '/assets/book-arts/trout_poster.png', alt: 'Trout Pop Up Page', descriptionTitle: 'Trout Pop Up Page' },
+                ]
+            },
         ]
     }
 ];

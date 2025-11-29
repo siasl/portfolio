@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Project } from '../data/projects';
 import MediaGallery from './MediaGallery';
+import CarouselGallery from './CarouselGallery';
 import { ExternalLink } from 'lucide-react';
 
 interface ProjectSectionProps {
@@ -14,16 +15,16 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({ project, index }) => {
 
     return (
         <section id={project.id} className={`py-20 border-b-4 border-neo-black ${bgColor}`}>
-            <div className="container mx-auto px-4 md:px-8">
-                <div className="flex flex-col md:flex-row gap-8 items-start mb-12">
-                    <div className="flex-1">
-                        <h2 className="text-5xl md:text-7xl font-black uppercase mb-6 break-words leading-none">
+            <div className="container mx-auto px-4 md:px-8 flex flex-col gap-16">
+                <div className="flex flex-col md:flex-row gap-8 items-start">
+                    <div className="flex-1 flex flex-col gap-6">
+                        <h2 className="text-5xl md:text-7xl font-black uppercase break-words leading-none">
                             <span className="bg-neo-black text-neo-white px-2 box-decoration-clone">
                                 {project.title}
                             </span>
                         </h2>
 
-                        <div className="flex flex-wrap gap-3 mb-6">
+                        <div className="flex flex-wrap gap-3">
                             {project.tags.map((tag, i) => {
                                 // Assign trail difficulty based on index for visual flair
                                 // 0: Green Circle, 1: Blue Square, 2: Black Diamond, 3: Double Black Diamond
@@ -46,12 +47,14 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({ project, index }) => {
                             })}
                         </div>
 
-                        <div className="text-xl md:text-2xl font-medium border-l-4 border-neo-black pl-6 whitespace-pre-wrap">
-                            {project.description}
-                        </div>
+                        {project.description && (
+                            <div className="text-xl md:text-2xl font-medium border-l-4 border-neo-black pl-6 whitespace-pre-wrap">
+                                {project.description}
+                            </div>
+                        )}
 
                         {project.links && project.links.length > 0 && (
-                            <div className="mt-8 flex flex-col gap-4">
+                            <div className="flex flex-col gap-4">
                                 {project.links.map(link => (
                                     <a
                                         key={link.url}
@@ -69,7 +72,33 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({ project, index }) => {
                     </div>
                 </div>
 
-                <MediaGallery media={project.media} columns={project.columns} />
+                {project.layout === 'carousel' ? (
+                    <CarouselGallery media={project.media} />
+                ) : (
+                    <MediaGallery media={project.media} columns={project.columns} />
+                )}
+
+                {project.sections && project.sections.map((section, i) => (
+                    <div key={i} className="flex flex-col gap-8">
+                        {section.title && (
+                            <h3 className="text-3xl md:text-4xl font-black uppercase break-words leading-none">
+                                <span className="bg-neo-black text-neo-white px-2 box-decoration-clone">
+                                    {section.title}
+                                </span>
+                            </h3>
+                        )}
+                        {section.description && (
+                            <div className="text-xl md:text-2xl font-medium border-l-4 border-neo-black pl-6 whitespace-pre-wrap">
+                                {section.description}
+                            </div>
+                        )}
+                        {section.layout === 'grid' ? (
+                            <MediaGallery media={section.media} columns={project.columns} />
+                        ) : (
+                            <CarouselGallery media={section.media} />
+                        )}
+                    </div>
+                ))}
             </div>
         </section>
     );
