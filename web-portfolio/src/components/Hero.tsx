@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { projects } from '../data/projects';
 
 const Hero: React.FC = () => {
     return (
@@ -18,50 +19,44 @@ const Hero: React.FC = () => {
                 <path d="M0 8000 Q 400 200 800 500 T 1600 200" stroke="#20B2AA" strokeWidth="10" fill="none" />
             </svg>
 
-            <div className="relative z-10 text-center max-w-4xl px-4 ">
-                <motion.div
-                    initial={{ y: 100, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.8, ease: "circOut" }}
-                    className="bg-white border-4 border-neo-black shadow-neo-lg p-8 md:p-16 transform -rotate-2 "
-                >
-                    <h1 className="text-6xl md:text-9xl font-black font-display uppercase tracking-tighter leading-none">
-                        Silas<br />Howe <br />Portfolio
-                    </h1>
-                </motion.div>
+            <div className="relative z-10 flex flex-col items-center w-full px-4">
+                <div className="text-center max-w-4xl">
+                    <motion.div
+                        initial={{ y: 100, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 0.8, ease: "circOut" }}
+                        className="bg-white border-4 border-neo-black shadow-neo-lg p-8 md:p-16 transform -rotate-2 "
+                    >
+                        <h1 className="text-6xl md:text-9xl font-black font-display uppercase tracking-tighter leading-none">
+                            Silas<br />Howe <br />Portfolio
+                        </h1>
+                    </motion.div>
 
 
-                <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.8 }}
-                    className="mt-8 text-xl font-bold bg-ski-orange text-white inline-block px-4 py-1 border-2 border-neo-black transform hover:rotate-10 transition-transform duration-300"
-                >
-                    DESIGN • TECH
-                </motion.p>
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.8 }}
+                        className="mt-8 text-xl font-bold bg-ski-orange text-white inline-block px-4 py-1 border-2 border-neo-black transform hover:rotate-10 transition-transform duration-300"
+                    >
+                        DESIGN • TECH
+                    </motion.p>
+                </div>
 
                 {/* Table of Contents */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1.0 }}
-                    className="mt-12 flex flex-wrap justify-center gap-4 md:gap-8 max-w-4xl mx-auto"
+                    className="mt-12 flex flex-wrap justify-center gap-4 md:gap-8 w-full max-w-7xl px-4"
                 >
-                    {[
-                        { id: 'call-light', label: 'Call Light' },
-                        { id: 'do-board', label: 'Do Board' },
-                        { id: 'personal-automations', label: 'Automations' },
-                        { id: 'video', label: 'Video' },
-                        { id: 'photography', label: 'Photography' },
-                        { id: 'xr', label: 'XR' },
-                        { id: 'book-arts', label: 'Book Arts' },
-                    ].map((item) => (
+                    {projects.map((project) => (
                         <a
-                            key={item.id}
-                            href={`#${item.id}`}
-                            className="text-lg font-bold uppercase hover:text-ski-orange hover:underline decoration-4 underline-offset-4 transition-colors"
+                            key={project.id}
+                            href={`#${project.id}`}
+                            className="text-lg font-bold uppercase hover:text-ski-orange hover:underline decoration-4 underline-offset-4 transition-colors whitespace-nowrap"
                         >
-                            {item.label}
+                            {project.title}
                         </a>
                     ))}
                 </motion.div>

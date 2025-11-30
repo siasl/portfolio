@@ -162,9 +162,17 @@ const CarouselGallery: React.FC<CarouselGalleryProps> = ({ media }) => {
                                 </div>
                             )
                         ) : item.type === 'iframe' ? (
-                            <div className="w-full h-full bg-gray-800 flex items-center justify-center">
-                                <span className="text-white text-xs">Embed</span>
-                            </div>
+                            item.poster ? (
+                                <img
+                                    src={item.poster}
+                                    alt={`Thumbnail ${index + 1}`}
+                                    className="w-full h-full object-cover"
+                                />
+                            ) : (
+                                <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+                                    <span className="text-white text-xs">Embed</span>
+                                </div>
+                            )
                         ) : (
                             <img
                                 src={item.src}

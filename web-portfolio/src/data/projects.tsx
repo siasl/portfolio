@@ -103,14 +103,44 @@ export const projects: Project[] = [
     },
     {
         id: 'personal-automations',
-        title: 'Personal Automations',
-        description: 'Instagram digest - Stay in the know without the infinite feed! An automation that sends me posts from important Instagram accounts to me on Telegram daily. Scrapes Instagram using Apify Actors. Also includes an AI Recipe Bot.',
+        title: 'Technical Projects',
+        description: '',
         tags: ['Automation', 'Coding', 'AI'],
         media: [
+
+        ],
+        sections: [
             {
-                type: 'iframe', src: 'https://www.youtube.com/embed/37RvtquWNng', descriptionTitle: 'Instagram Digest Creator'
+                title: 'Personal Automations',
+                layout: 'grid',
+                description: 'Experiments with automations and AI, built in n8n.',
+                media: [
+                    {
+                        type: 'iframe',
+                        src: 'https://www.youtube.com/embed/37RvtquWNng',
+                        descriptionTitle: 'Instagram Digest Creator',
+                        description: 'Instagram digest - Stay in the know without the infinite feed! An automation that sends me posts from important Instagram accounts to me on Telegram daily. Scrapes Instagram using Apify Actors.',
+                    },
+                    {
+                        type: 'iframe',
+                        src: 'https://www.youtube.com/embed/pSGgV2VVAcY',
+                        descriptionTitle: 'AI Recipe Bot',
+                        description: 'An AI agent I built to manage my recipe collection. The recipes are stored in a Notion database. It can scrape recipes from recipe websites and Instragram Reels. It also has access to a web search to find new recipes on its own.',
+                    }
+                ]
             },
-            { type: 'iframe', src: 'https://www.youtube.com/embed/pSGgV2VVAcY', descriptionTitle: 'AI Recipe Bot' }
+            {
+                title: 'Pretty Pulses',
+                layout: 'grid',
+                description: 'A Chrome Extension I owned and maintained while I was on the Resolution Team. I added lots of features that saved the team team 60+ hours a year.',
+                media: [
+                    {
+                        type: 'image',
+                        src: '/assets/personal-automations/pretty_pulses.png',
+                        descriptionTitle: 'Pretty Pulses',
+                    }
+                ]
+            }
         ]
     },
     {
