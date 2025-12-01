@@ -132,7 +132,7 @@ export const projects: Project[] = [
             {
                 title: 'Pretty Pulses',
                 layout: 'grid',
-                description: 'A Chrome Extension I owned and maintained while I was on the Resolution Team. I added lots of features that saved the team team 60+ hours a year.',
+                description: 'A Chrome Extension I owned and maintained while I was on the Resolution Team at Qualtrics. I added lots of features that saved the team team 60+ hours a year.',
                 media: [
                     {
                         type: 'image',
