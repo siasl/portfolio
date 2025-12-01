@@ -17,7 +17,9 @@ interface MediaGalleryProps {
 }
 
 const MediaDescription: React.FC<{ title?: string; body?: string | React.ReactNode }> = ({ title, body }) => {
-    const [isOpen, setIsOpen] = React.useState(false);
+    const isShort = typeof body === 'string' && body.length < 150;
+    const [expanded, setExpanded] = React.useState(false);
+    const showContent = isShort || expanded;
 
     // If there is no body, just show the title (if it exists)
     if (!body) {
@@ -36,7 +38,7 @@ const MediaDescription: React.FC<{ title?: string; body?: string | React.ReactNo
                 {title || "Description"}
             </div>
 
-            <div className={`grid transition-all duration-300 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100 mt-2' : 'grid-rows-[0fr] opacity-0'}`}>
+            <div className={`grid transition-all duration-300 ease-in-out ${showContent ? 'grid-rows-[1fr] opacity-100 mt-2' : 'grid-rows-[0fr] opacity-0'}`}>
                 <div className="overflow-hidden">
                     <div className="font-mono text-neo-black whitespace-pre-wrap text-base">
                         {body}
@@ -44,12 +46,14 @@ const MediaDescription: React.FC<{ title?: string; body?: string | React.ReactNo
                 </div>
             </div>
 
-            <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="text-ski-orange font-bold font-mono hover:underline text-sm uppercase mt-1"
-            >
-                {isOpen ? 'Read Less' : 'Read More...'}
-            </button>
+            {!isShort && (
+                <button
+                    onClick={() => setExpanded(!expanded)}
+                    className="text-ski-orange font-bold font-mono hover:underline text-sm uppercase mt-1"
+                >
+                    {expanded ? 'Read Less' : 'Read More...'}
+                </button>
+            )}
         </div>
     );
 };

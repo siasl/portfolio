@@ -46,7 +46,7 @@ export const projects: Project[] = [
         title: 'Call Light',
         description: (
             <>
-                An app for improving communication between nurses and patients.
+                An app for improving communication between nurses and patients. I worked with three teammates to create the app. I served as product designer and frontend developer.
                 <ul className="list-disc pl-5 mt-2 space-y-2">
                     <li>Replaces antiquated binary (on/off) call light system with easy to use menus allowing for easier communication of needs.</li>
                     <li>Saves nurses time because they don't have to enter the room to find out what is being requested when a call light is turned on.</li>
@@ -85,7 +85,7 @@ export const projects: Project[] = [
     {
         id: 'do-board',
         title: 'Do Board',
-        description: 'A tactile to-do list I designed. Inspired by mechanical keyboards, each row has a distinct and satisfying tactility as you erase each task you complete. Originally, I was planning to light up LEDs to indicate a task being completed, but as I iterated on the design, I decided simple was better.',
+        description: 'A tactile to-do list I designed, built, and prototyped. Inspired by mechanical keyboards, each row has a distinct and satisfying tactility as you erase each task you complete. Originally, I was planning to light up LEDs to indicate a task being completed, but as I iterated on the design, I decided simple was better.',
         tags: ['Product Design', 'Hardware', 'Prototyping'],
         columns: 2,
         layout: 'carousel',
@@ -113,7 +113,7 @@ export const projects: Project[] = [
             {
                 title: 'Personal Automations',
                 layout: 'grid',
-                description: 'Experiments with automations and AI, built in n8n.',
+                description: 'Experiments with automations and AI, built in n8n. I am the sole creator of these.',
                 media: [
                     {
                         type: 'iframe',
@@ -137,28 +137,49 @@ export const projects: Project[] = [
                     {
                         type: 'image',
                         src: '/assets/personal-automations/pretty_pulses.png',
-                        descriptionTitle: 'Pretty Pulses',
+                        descriptionTitle: '',
                     }
                 ]
+            },
+            {
+                title: 'Other Projects',
+                layout: 'grid',
+                description: (
+                    <>
+                        <ul className="list-disc pl-5 space-y-2">
+                            <li>
+                                <b>Fantasy Football statistics visualization</b> - <a href="https://github.com/siasl/FantasyFootball" target="_blank" rel="noopener noreferrer" className="underline hover:text-ski-orange">GitHub</a>
+                            </li>
+                            <li>
+                                <b>Home Assistant</b>
+                                <ul className="list-[circle] pl-5 mt-1 space-y-1">
+                                    <li>Custom dashboards showing data I get from reverse engineering Open Snow’s API</li>
+                                    <li>Automations triggered by ZigBee sensors</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </>
+                ),
+                media: []
             }
         ]
     },
     {
         id: 'video',
         title: 'Video',
-        description: 'Video projects.',
+        description: 'Video projects I created for TikTok and Youtube.',
         tags: ['Video', 'Editing'],
         media: [
-            { type: 'video', src: '/assets/video/Perspective_3.mp4', poster: '/assets/video/frisbeePoster.png', descriptionTitle: 'Frisbee Video - 8.2M views, 1M Likes on Tiktok' },
-            { type: 'video', src: '/assets/video/Ball_Persepective_video.mp4', poster: '/assets/video/ballPoster.png', descriptionTitle: 'Ball Video - 2.7M views, 107.3k Likes on Tiktok' },
-            { type: 'video', src: '/assets/video/Video_Normal_Size.mp4', poster: '/assets/video/CarPoster.png', descriptionTitle: 'Car Video - Playing with perspective, car' },
-            { type: 'iframe', src: 'https://www.youtube.com/embed/SHSzfIY1MVs', descriptionTitle: 'Ski Bum - Basic Filmmaking Final Project' }
+            { type: 'video', src: '/assets/video/Perspective_3.mp4', poster: '/assets/video/frisbeePoster.png', descriptionTitle: 'Frisbee Video - 8.2M views, 1M Likes on Tiktok', description: 'I created, and edited this video in After Effects.' },
+            { type: 'video', src: '/assets/video/Ball_Persepective_video.mp4', poster: '/assets/video/ballPoster.png', descriptionTitle: 'Ball Video - 2.7M views, 107.3k Likes on Tiktok', description: 'I created, and edited this video in After Effects.' },
+            { type: 'video', src: '/assets/video/Video_Normal_Size.mp4', poster: '/assets/video/CarPoster.png', descriptionTitle: 'Car Video - Playing with perspective, car', description: 'I created, and edited this video.' },
+            { type: 'iframe', src: 'https://www.youtube.com/embed/SHSzfIY1MVs', descriptionTitle: 'Ski Bum - Basic Filmmaking Final Project', description: 'I co-wrote, co-directed, and co-edited this project.' }
         ]
     },
     {
         id: 'photography',
         title: 'Photography',
-        description: 'A collection of my photography work.',
+        description: 'A collection of my photography work. I took and edited these photos.',
         tags: ['Photography'],
         layout: 'grid',
         media: [
@@ -177,7 +198,7 @@ export const projects: Project[] = [
     {
         id: 'xr',
         title: 'XR',
-        description: <>AR and VR projects including Snapchat Lenses (Farm Animal, Furniture Placement, Paper Sailboat, Retro Radio) and Photogrammetry. <br></br><mark style={{ backgroundColor: '#fea888ff' }}>Click the squares icon in the corner of each video to view the lens in Snapchat.</mark></>,
+        description: <>AR and VR projects including Snapchat Lenses (Farm Animal, Furniture Placement, Paper Sailboat, Retro Radio) and Photogrammetry. I created the lenses myself in Snapchat Lens Studio, and used Polycam to create the photogrammetry models. <br></br><mark style={{ backgroundColor: '#fea888ff' }}>Click the squares icon in the corner of each video to view the lens in Snapchat.</mark></>,
         tags: ['AR', 'VR', 'Snapchat Lens', 'Photogrammetry'],
         columns: 4,
         media: [
@@ -203,7 +224,7 @@ export const projects: Project[] = [
             {
                 title: 'Tied Up',
                 layout: 'grid',
-                description: 'Monotype prints and book binding.',
+                description: 'Monotype prints and book binding by me.',
                 media: [
                     { type: 'image', src: '/assets/book-arts/TiedUp_Cover.jpg', alt: 'Book Art', descriptionTitle: 'The binding' },
                     { type: 'image', src: '/assets/book-arts/20201215_194859.jpg', alt: 'Book Art', descriptionTitle: 'One of the mono-type prints' },
