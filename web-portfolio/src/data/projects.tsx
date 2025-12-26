@@ -198,7 +198,7 @@ export const projects: Project[] = [
     {
         id: 'xr',
         title: 'XR',
-        description: <>AR and VR projects including Snapchat Lenses (Farm Animal, Furniture Placement, Paper Sailboat, Retro Radio) and Photogrammetry. I created the lenses myself in Snapchat Lens Studio, and used Polycam to create the photogrammetry models. <br></br><mark style={{ backgroundColor: '#fea888ff' }}>Click the squares icon in the corner of each video to view the lens in Snapchat.</mark></>,
+        description: 'AR and VR projects including Snapchat Lenses (Farm Animal, Furniture Placement, Paper Sailboat, Retro Radio) and Photogrammetry. I created the lenses myself in Snapchat Lens Studio, and used Polycam to create the photogrammetry models.',
         tags: ['AR', 'VR', 'Snapchat Lens', 'Photogrammetry'],
         columns: 4,
         media: [

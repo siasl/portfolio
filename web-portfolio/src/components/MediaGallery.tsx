@@ -16,20 +16,34 @@ interface MediaGalleryProps {
     columns?: number;
 }
 
-const MediaDescription: React.FC<{ title?: string; body?: string | React.ReactNode }> = ({ title, body }) => {
+const MediaDescription: React.FC<{ title?: string; body?: string | React.ReactNode; onQrCodeClick?: () => void }> = ({ title, body, onQrCodeClick }) => {
     const isShort = typeof body === 'string' && body.length < 150;
     const [expanded, setExpanded] = React.useState(false);
     const showContent = isShort || expanded;
 
     // If there is no body, just show the title (if it exists)
     if (!body) {
-        return title ? (
+        if (!title && !onQrCodeClick) return null;
+        return (
             <div className="mt-3 px-1" onClick={(e) => e.stopPropagation()}>
-                <div className="font-bold font-mono text-lg text-neo-black">
-                    {title}
-                </div>
+                {title && (
+                    <div className="font-bold font-mono text-lg text-neo-black">
+                        {title}
+                    </div>
+                )}
+                {onQrCodeClick && (
+                    <button
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            onQrCodeClick();
+                        }}
+                        className="text-ski-orange font-bold font-mono hover:underline text-sm uppercase mt-1 block"
+                    >
+                        click here to view lens
+                    </button>
+                )}
             </div>
-        ) : null;
+        );
     }
 
     return (
@@ -52,6 +66,18 @@ const MediaDescription: React.FC<{ title?: string; body?: string | React.ReactNo
                     className="text-ski-orange font-bold font-mono hover:underline text-sm uppercase mt-1"
                 >
                     {expanded ? 'Read Less' : 'Read More...'}
+                </button>
+            )}
+
+            {onQrCodeClick && (
+                <button
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onQrCodeClick();
+                    }}
+                    className="text-ski-orange font-bold font-mono hover:underline text-sm uppercase mt-1 block"
+                >
+                    click here to view lens
                 </button>
             )}
         </div>
@@ -153,23 +179,7 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ media, columns = 2 }) => {
                                         </svg>
                                     </div>
                                 </div>
-                                {item.qrCode && (
-                                    <button
-                                        className="absolute top-2 right-2 bg-neo-white p-2 border-2 border-neo-black shadow-neo-sm hover:bg-neo-green transition-colors z-20 pointer-events-auto"
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            setSelectedMedia({ type: 'image', src: item.qrCode!, alt: 'Snapchat QR Code' });
-                                        }}
-                                        title="Show Snapcode"
-                                    >
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                            <rect x="3" y="3" width="7" height="7"></rect>
-                                            <rect x="14" y="3" width="7" height="7"></rect>
-                                            <rect x="14" y="14" width="7" height="7"></rect>
-                                            <rect x="3" y="14" width="7" height="7"></rect>
-                                        </svg>
-                                    </button>
-                                )}
+
                             </div>
                         ) : item.type === 'iframe' ? (
                             <iframe
@@ -187,8 +197,12 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ media, columns = 2 }) => {
                         )}
 
                         {/* Description */}
-                        {(item.description || item.descriptionTitle) && (
-                            <MediaDescription title={item.descriptionTitle} body={item.description} />
+                        {(item.description || item.descriptionTitle || item.qrCode) && (
+                            <MediaDescription
+                                title={item.descriptionTitle}
+                                body={item.description}
+                                onQrCodeClick={item.qrCode ? () => setSelectedMedia({ type: 'image', src: item.qrCode!, alt: 'Snapchat QR Code' }) : undefined}
+                            />
                         )}
                     </div>
                 ))}

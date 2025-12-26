@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { projects } from '../data/projects';
 
 const Hero: React.FC = () => {
@@ -50,7 +51,7 @@ const Hero: React.FC = () => {
                     transition={{ delay: 1.0 }}
                     className="mt-12 flex flex-wrap justify-center gap-4 md:gap-8 w-full max-w-7xl px-4"
                 >
-                    {projects.map((project) => (
+                    {projects.filter(p => p.id !== 'photography' && p.id !== 'video').map((project) => (
                         <a
                             key={project.id}
                             href={`#${project.id}`}
@@ -59,6 +60,12 @@ const Hero: React.FC = () => {
                             {project.title}
                         </a>
                     ))}
+                    <Link
+                        to="/photo-video"
+                        className="text-lg font-bold uppercase hover:text-ski-orange hover:underline decoration-4 underline-offset-4 transition-colors whitespace-nowrap"
+                    >
+                        Other
+                    </Link>
                 </motion.div>
             </div>
 
