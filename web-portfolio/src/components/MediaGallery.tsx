@@ -1,4 +1,5 @@
 import React from 'react';
+import { resolveAssetUrl } from '../utils/urls';
 
 interface MediaItem {
     type: 'image' | 'video' | 'iframe';
@@ -168,8 +169,8 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ media, columns = 2 }) => {
                         {item.type === 'video' ? (
                             <div className="relative">
                                 <video
-                                    src={item.src}
-                                    poster={item.poster}
+                                    src={resolveAssetUrl(item.src)}
+                                    poster={resolveAssetUrl(item.poster)}
                                     className="w-full h-auto border-2 border-neo-black transition-all duration-500 pointer-events-none"
                                 />
                                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -190,7 +191,7 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ media, columns = 2 }) => {
                             />
                         ) : (
                             <img
-                                src={item.src}
+                                src={resolveAssetUrl(item.src)}
                                 alt={item.alt || 'Project media'}
                                 className="w-full h-auto border-2 border-neo-black transition-all duration-500"
                             />
@@ -201,7 +202,7 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ media, columns = 2 }) => {
                             <MediaDescription
                                 title={item.descriptionTitle}
                                 body={item.description}
-                                onQrCodeClick={item.qrCode ? () => setSelectedMedia({ type: 'image', src: item.qrCode!, alt: 'Snapchat QR Code' }) : undefined}
+                                onQrCodeClick={item.qrCode ? () => setSelectedMedia({ type: 'image', src: resolveAssetUrl(item.qrCode)!, alt: 'Snapchat QR Code' }) : undefined}
                             />
                         )}
                     </div>
@@ -232,15 +233,15 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ media, columns = 2 }) => {
                             <div className="flex-1 min-h-0 relative w-full bg-black">
                                 {selectedMedia.type === 'video' ? (
                                     <video
-                                        src={selectedMedia.src}
-                                        poster={selectedMedia.poster}
+                                        src={resolveAssetUrl(selectedMedia.src)}
+                                        poster={resolveAssetUrl(selectedMedia.poster)}
                                         controls
                                         autoPlay
                                         className="absolute inset-0 w-full h-full object-contain"
                                     />
                                 ) : (
                                     <img
-                                        src={selectedMedia.src}
+                                        src={resolveAssetUrl(selectedMedia.src)}
                                         alt={selectedMedia.alt || 'Full screen media'}
                                         className="absolute inset-0 w-full h-full object-contain"
                                     />

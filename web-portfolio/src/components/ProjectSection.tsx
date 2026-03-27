@@ -3,6 +3,7 @@ import type { Project } from '../data/projects';
 import MediaGallery from './MediaGallery';
 import CarouselGallery from './CarouselGallery';
 import { ExternalLink } from 'lucide-react';
+import { resolveAssetUrl } from '../utils/urls';
 
 interface ProjectSectionProps {
     project: Project;
@@ -58,7 +59,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({ project, index }) => {
                                 {project.links.map(link => (
                                     <a
                                         key={link.url}
-                                        href={link.url}
+                                        href={resolveAssetUrl(link.url)}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="inline-flex items-center gap-2 text-lg font-bold hover:underline decoration-4 underline-offset-4"

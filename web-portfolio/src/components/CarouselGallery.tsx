@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { resolveAssetUrl } from '../utils/urls';
 
 interface MediaItem {
     type: 'image' | 'video' | 'iframe';
@@ -76,8 +77,8 @@ const CarouselGallery: React.FC<CarouselGalleryProps> = ({ media }) => {
                     >
                         {item.type === 'video' ? (
                             <video
-                                src={item.src}
-                                poster={item.poster}
+                                src={resolveAssetUrl(item.src)}
+                                poster={resolveAssetUrl(item.poster)}
                                 controls
                                 className="max-w-full max-h-full object-contain"
                             />
@@ -90,7 +91,7 @@ const CarouselGallery: React.FC<CarouselGalleryProps> = ({ media }) => {
                             />
                         ) : (
                             <img
-                                src={item.src}
+                                src={resolveAssetUrl(item.src)}
                                 alt={item.alt || 'Project media'}
                                 className="max-w-full max-h-full object-contain"
                             />
@@ -152,7 +153,7 @@ const CarouselGallery: React.FC<CarouselGalleryProps> = ({ media }) => {
                         {item.type === 'video' ? (
                             item.poster ? (
                                 <img
-                                    src={item.poster}
+                                    src={resolveAssetUrl(item.poster)}
                                     alt={`Thumbnail ${index + 1}`}
                                     className="w-full h-full object-cover"
                                 />
@@ -164,7 +165,7 @@ const CarouselGallery: React.FC<CarouselGalleryProps> = ({ media }) => {
                         ) : item.type === 'iframe' ? (
                             item.poster ? (
                                 <img
-                                    src={item.poster}
+                                    src={resolveAssetUrl(item.poster)}
                                     alt={`Thumbnail ${index + 1}`}
                                     className="w-full h-full object-cover"
                                 />
@@ -175,7 +176,7 @@ const CarouselGallery: React.FC<CarouselGalleryProps> = ({ media }) => {
                             )
                         ) : (
                             <img
-                                src={item.src}
+                                src={resolveAssetUrl(item.src)}
                                 alt={`Thumbnail ${index + 1}`}
                                 className="w-full h-full object-cover"
                             />
