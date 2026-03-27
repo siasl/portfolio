@@ -126,6 +126,14 @@ const FloatingMenu: React.FC = () => {
                                         >
                                             Jibbitz Project
                                         </a>
+                                        <a
+                                            href="https://github.com/siasl"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-left font-mono font-bold text-neo-black hover:text-ski-orange transition-colors uppercase text-sm"
+                                        >
+                                            GitHub
+                                        </a>
                                     </div>
                                 </div>
                             </div>

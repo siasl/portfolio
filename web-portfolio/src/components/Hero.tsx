@@ -74,6 +74,14 @@ const Hero: React.FC = () => {
                     >
                         Jibbitz
                     </a>
+                    <a
+                        href="https://github.com/siasl"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-lg font-bold uppercase hover:text-ski-orange hover:underline decoration-4 underline-offset-4 transition-colors whitespace-nowrap"
+                    >
+                        GitHub
+                    </a>
                 </motion.div>
             </div>
 
