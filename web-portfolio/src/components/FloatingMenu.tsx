@@ -112,6 +112,22 @@ const FloatingMenu: React.FC = () => {
                                         ))}
                                     </div>
                                 </div>
+
+                                <div>
+                                    <div className="text-2xl font-black uppercase mb-4 text-neo-black">
+                                        Other Projects
+                                    </div>
+                                    <div className="flex flex-col gap-2 pl-4 border-l-2 border-neo-black/20">
+                                        <a
+                                            href="https://jibbitz.silashowe.com"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-left font-mono font-bold text-neo-black hover:text-ski-orange transition-colors uppercase text-sm"
+                                        >
+                                            Jibbitz Project
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </motion.div>
                     </>

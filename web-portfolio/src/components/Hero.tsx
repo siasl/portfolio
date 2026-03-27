@@ -66,6 +66,14 @@ const Hero: React.FC = () => {
                     >
                         Other
                     </Link>
+                    <a
+                        href="https://jibbitz.silashowe.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-lg font-bold uppercase hover:text-ski-orange hover:underline decoration-4 underline-offset-4 transition-colors whitespace-nowrap"
+                    >
+                        Jibbitz
+                    </a>
                 </motion.div>
             </div>
 
