@@ -52,13 +52,13 @@ const Hero: React.FC = () => {
                     className="mt-12 flex flex-wrap justify-center gap-4 md:gap-8 w-full max-w-7xl px-4"
                 >
                     {projects.filter(p => p.id !== 'photography' && p.id !== 'video').map((project) => (
-                        <a
+                        <Link
                             key={project.id}
-                            href={`#${project.id}`}
+                            to={{ pathname: '/', hash: `#${project.id}` }}
                             className="text-lg font-bold uppercase hover:text-ski-orange hover:underline decoration-4 underline-offset-4 transition-colors whitespace-nowrap"
                         >
                             {project.title}
-                        </a>
+                        </Link>
                     ))}
                     <Link
                         to="/photo-video"

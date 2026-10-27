@@ -33,6 +33,8 @@ const FloatingMenu: React.FC = () => {
             const element = document.getElementById(id);
             if (element) {
                 element.scrollIntoView({ behavior: 'smooth' });
+            } else if (!id) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
     };
