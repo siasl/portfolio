@@ -1,4 +1,5 @@
 import FloatingMenu from './FloatingMenu';
+import BetaBanner from './BetaBanner';
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -7,6 +8,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <div className="min-h-screen bg-snow-white text-neo-black selection:bg-ski-orange selection:text-neo-white overflow-hidden">
+            <BetaBanner />
             <FloatingMenu />
             <main className="relative z-10">
                 {children}
