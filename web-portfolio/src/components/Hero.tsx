@@ -1,118 +1,115 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { projects } from '../data/projects';
+import { resolveAssetUrl } from '../utils/urls';
+import { KineticHeading } from './AlpineMotifs';
+import { useReducedMotion } from '../hooks/useReducedMotion';
 
+/** Full-bleed night-sky hero with alpine contour geometry and hiring-manager focus. */
 const Hero: React.FC = () => {
-    return (
-        <section className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden border-b-4 border-neo-black bg-salt-white">
-            {/* Grid Background */}
-            <div className="absolute inset-0 grid grid-cols-[repeat(20,minmax(0,1fr))] grid-rows-[repeat(20,minmax(0,1fr))] opacity-10 pointer-events-none">
-                {Array.from({ length: 400 }).map((_, i) => (
-                    <div key={i} className="border-[0.5px] border-neo-black" />
-                ))}
-            </div>
+    const reduced = useReducedMotion();
 
-            {/* Trail Map Line Decoration */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-50" xmlns="http://www.w3.org/2000/svg">
-                <path d="M-100 100 Q 200 600 500 300 T 1200 800" stroke="#FF4500" strokeWidth="10" fill="none" strokeDasharray="20 20" />
-                <path d="M0 800 Q 400 200 800 500 T 1600 200" stroke="#20B2AA" strokeWidth="10" fill="none" />
-                <path d="M0 8000 Q 400 200 800 500 T 1600 200" stroke="#20B2AA" strokeWidth="10" fill="none" />
+    const scrollToWork = (e: React.MouseEvent) => {
+        e.preventDefault();
+        document.getElementById('work')?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
+    };
+
+    return (
+        <section className="hero-surface relative isolate overflow-hidden bg-[#0B0B0C] text-white">
+            <img
+                src={resolveAssetUrl('/assets/cards/mountains-wide.jpg')}
+                alt=""
+                width={2400}
+                height={1594}
+                fetchPriority="high"
+                decoding="async"
+                className="absolute inset-0 -z-10 h-full w-full object-cover object-[65%_40%] md:object-[50%_40%]"
+            />
+            {/* Shade behind the copy so text stays above 7:1 contrast across the full hero width. */}
+            <div
+                className="absolute inset-0 -z-10 bg-gradient-to-b from-black/85 via-black/75 to-black/55 md:bg-gradient-to-r md:from-black/90 md:via-black/70 md:to-black/20"
+                aria-hidden="true"
+            />
+            {/* Topographic contour lines anchored to the upper-right photo corner. */}
+            <svg
+                viewBox="0 0 420 260"
+                fill="none"
+                aria-hidden="true"
+                className="pointer-events-none absolute right-0 top-0 -z-10 hidden h-full w-[420px] text-white/15 lg:block"
+            >
+                <path d="M90 -20 C 140 60, 240 40, 290 120 C 330 185, 380 175, 440 230" stroke="currentColor" strokeWidth="1.2" />
+                <path d="M140 -20 C 185 50, 265 35, 315 105 C 350 155, 395 150, 445 195" stroke="currentColor" strokeWidth="1" />
+                <path d="M195 -20 C 235 40, 295 30, 340 90 C 370 130, 405 128, 445 160" stroke="currentColor" strokeWidth="0.9" strokeDasharray="4 4" />
+                <path d="M255 -20 C 285 28, 330 24, 365 72 C 390 105, 418 106, 445 125" stroke="currentColor" strokeWidth="0.8" />
             </svg>
 
-            <div className="relative z-10 flex flex-col items-center w-full px-4">
-                <div className="text-center max-w-4xl">
-                    <motion.div
-                        initial={{ y: 100, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 0.8, ease: "circOut" }}
-                        className="bg-white border-4 border-neo-black shadow-neo-lg p-8 md:p-16 transform -rotate-2 "
-                    >
-                        <h1 className="text-6xl md:text-9xl font-black font-display uppercase tracking-tighter leading-none">
-                            Silas<br />Howe <br />Portfolio
-                        </h1>
-                    </motion.div>
+            <div className="mx-auto max-w-6xl px-5 pb-20 pt-12 sm:px-8 md:py-24">
+                <div className="max-w-2xl">
+                    {/* Lift-ticket metadata strip: real location and credentials, not a decorative pill. */}
+                    <div className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-1.5 border-l-2 border-[#E47456] pl-3 font-mono text-[12px] tracking-[0.05em] text-white/85">
+                        <span>BOULDER, CO</span>
+                        <span aria-hidden="true">·</span>
+                        <span>CU BOULDER ATLAS M.S.</span>
+                        <span aria-hidden="true">·</span>
+                        <span>EX-QUALTRICS</span>
+                    </div>
 
+                    <KineticHeading
+                        as="h1"
+                        immediate
+                        text="I’m Silas Howe. I design tools people rely on, then build them myself."
+                        className="heading text-[2.2rem] sm:text-[2.9rem] md:text-[3.35rem]"
+                    />
 
                     <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.8 }}
-                        className="mt-8 text-xl font-bold bg-ski-orange text-white inline-block px-4 py-1 border-2 border-neo-black transform hover:rotate-10 transition-transform duration-300"
+                        initial={reduced ? false : { opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.45, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                        className="mt-6 max-w-prose text-[1.06rem] leading-relaxed text-white/90"
                     >
-                        DESIGN • TECH
+                        Four years at Qualtrics building internal extensions and healthcare workflows that saved teams
+                        350+ hours a year. Now in CU Boulder’s Creative Technology &amp; Design master’s program,
+                        combining software engineering with physical craft, creative code, and night-sky photography.
                     </motion.p>
-                </div>
 
-                {/* Table of Contents */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.0 }}
-                    className="mt-12 flex flex-wrap justify-center gap-4 md:gap-8 w-full max-w-7xl px-4"
-                >
-                    {projects.filter(p => p.id !== 'photography' && p.id !== 'video').map((project) => (
-                        <Link
-                            key={project.id}
-                            to={{ pathname: '/', hash: `#${project.id}` }}
-                            className="text-lg font-bold uppercase hover:text-ski-orange hover:underline decoration-4 underline-offset-4 transition-colors whitespace-nowrap"
-                        >
-                            {project.title}
-                        </Link>
-                    ))}
-                    <Link
-                        to="/photo-video"
-                        className="text-lg font-bold uppercase hover:text-ski-orange hover:underline decoration-4 underline-offset-4 transition-colors whitespace-nowrap"
-                    >
-                        Other
-                    </Link>
-                    <a
-                        href="https://jibbitz.silashowe.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-lg font-bold uppercase hover:text-ski-orange hover:underline decoration-4 underline-offset-4 transition-colors whitespace-nowrap"
-                    >
-                        Jibbitz
-                    </a>
-                    <a
-                        href="https://github.com/siasl"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-lg font-bold uppercase hover:text-ski-orange hover:underline decoration-4 underline-offset-4 transition-colors whitespace-nowrap"
-                    >
-                        GitHub
-                    </a>
-                </motion.div>
-            </div>
-
-            <div className="absolute bottom-0 left-0 right-0 bg-neo-black text-neo-white py-4 border-t-4 border-neo-black overflow-hidden whitespace-nowrap flex">
-                {/* Two identical sets of content for seamless looping */}
-                {[0, 1].map((index) => (
                     <motion.div
-                        key={index}
-                        initial={{ x: "0%" }}
-                        animate={{ x: "-100%" }}
-                        transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
-                        className="flex gap-8 text-2xl font-bold uppercase pr-8 shrink-0"
+                        initial={reduced ? false : { opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.45, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                        className="mt-8 flex flex-wrap items-center gap-3"
                     >
-                        {Array.from({ length: 5 }).map((_, i) => (
-                            <span key={i} className="flex items-center gap-8">
-                                <span>Product Design</span>
-                                <span className="text-white text-4xl pb-1">♦♦</span>
-                                <span>Hardware</span>
-                                <span className="text-[#009E60] text-5xl pb-2">●</span>
-                                <span>Photography</span>
-                                <span className="text-[#007FFF] text-4xl pb-2">■</span>
-                                <span>XR</span>
-                                <span className="text-white text-4xl pb-1">♦</span>
-                                <span>Video</span>
-                                <span className="text-[#009E60] text-5xl pb-2">●</span>
-                            </span>
-                        ))}
+                        <a
+                            href="#work"
+                            onClick={scrollToWork}
+                            className="inline-flex min-h-[44px] items-center rounded-sm bg-[#F4F1EA] px-5 py-2.5 text-[15px] font-semibold text-[#1C1B19] transition-[background-color,color,transform] duration-150 hover:bg-[#E47456] hover:text-[#181715] active:scale-[0.98]"
+                        >
+                            View selected work
+                        </a>
+                        <a
+                            href="mailto:silashowe1999@gmail.com"
+                            className="inline-flex min-h-[44px] items-center px-2.5 text-[15px] underline decoration-white/50 underline-offset-[4px] hover:decoration-white active:opacity-75"
+                        >
+                            Email
+                        </a>
+                        <a
+                            href="https://www.linkedin.com/in/silashowe/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex min-h-[44px] items-center px-2.5 text-[15px] underline decoration-white/50 underline-offset-[4px] hover:decoration-white active:opacity-75"
+                        >
+                            LinkedIn
+                        </a>
+                        <a
+                            href="https://github.com/siasl"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex min-h-[44px] items-center px-2.5 text-[15px] underline decoration-white/50 underline-offset-[4px] hover:decoration-white active:opacity-75"
+                        >
+                            GitHub
+                        </a>
                     </motion.div>
-                ))}
+                </div>
             </div>
-        </section >
+        </section>
     );
 };
 

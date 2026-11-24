@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Beta site (portfolio-refresh) served from Cloudflare Workers static assets.
+  "name": "portfolio-beta",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  },
+  "routes": [{ "pattern": "beta.silashowe.com", "custom_domain": true }],
+  "workers_dev": false
+}

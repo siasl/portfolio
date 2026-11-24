@@ -2,17 +2,141 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  background-color: #ffffff;
-  color: #000000;
+/* Warm paper neutrals, alpine pine & trail cobalt cores, print-red accent. Dark mode inverts to warm charcoal. */
+:root,
+.theme-light {
+  --paper: 244 241 234;
+  --ink: 28 27 25;
+  --muted: 107 103 95;
+  --pine: 30 102 65;
+  --cobalt: 29 86 150;
+  --accent: 181 71 43;
+  --line-alpha: 0.16;
+  --line-strong-alpha: 0.50;
 }
 
-html {
-  scroll-behavior: smooth;
+.dark {
+  --paper: 24 23 21;
+  --ink: 236 232 223;
+  --muted: 160 154 143;
+  --pine: 82 183 136;
+  --cobalt: 108 168 232;
+  --accent: 228 116 86;
+  --line-alpha: 0.18;
+  --line-strong-alpha: 0.50;
+  color-scheme: dark;
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: 'Helvetica', 'Arial', sans-serif;
+/* Product reconstructions depict light software: keep their ink dark when the site is in dark mode. */
+.theme-light {
+  color: rgb(var(--ink));
+  color-scheme: light;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'National Park', system-ui, sans-serif;
+    font-size: 16.5px;
+    line-height: 1.6;
+    background: rgb(var(--paper));
+    color: rgb(var(--ink));
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  /* Restore pointer affordance after Tailwind preflight resets button cursor. */
+  a[href],
+  button:not(:disabled),
+  summary,
+  select:not(:disabled),
+  label[for],
+  input[type='checkbox']:not(:disabled),
+  input[type='radio']:not(:disabled),
+  [role='button']:not([aria-disabled='true']),
+  [role='tab']:not([aria-disabled='true']),
+  [role='switch']:not([aria-disabled='true']) {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  select:disabled,
+  input:disabled,
+  [aria-disabled='true'] {
+    cursor: not-allowed;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  summary:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .hero-surface a:focus-visible,
+  .hero-surface button:focus-visible {
+    outline-color: #F4F1EA;
+  }
+}
+
+::selection {
+  background: rgb(var(--accent));
+  color: #FFFFFF;
+}
+
+.dark ::selection {
+  background: rgb(var(--accent));
+  color: rgb(var(--paper));
+}
+
+@layer components {
+  .section-title {
+    @apply font-serif text-2xl font-medium tracking-[-0.015em] text-ink md:text-[2rem];
+  }
+
+  .label {
+    @apply text-sm font-semibold text-ink;
+  }
+
+  .display,
+  .heading {
+    @apply font-serif font-medium tracking-[-0.012em] leading-[1.08];
+  }
+
+  .text-link {
+    @apply underline decoration-ink/35 underline-offset-[3px] transition-colors hover:text-accent hover:decoration-accent active:opacity-75;
+  }
+
+  .link-underline {
+    @apply underline decoration-transparent underline-offset-[3px] transition-colors hover:decoration-current active:opacity-75;
+  }
+
+  /* Vintage ski-poster / lift-ticket metadata cell. */
+  .ticket-stamp {
+    @apply rounded-sm border border-line bg-paper px-3 py-1.5 font-mono text-[12px] tracking-[0.04em] text-ink;
+  }
+
+  /* High-contrast (>= 3:1 border) interactive button with 44px touch height. */
+  .control-btn {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-sm border border-ink/50 bg-paper px-3.5 py-2 text-[14px] font-semibold text-ink transition-[color,border-color,background-color,transform] duration-150 hover:border-accent hover:text-accent active:scale-[0.97] active:bg-ink/5 disabled:opacity-50;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
