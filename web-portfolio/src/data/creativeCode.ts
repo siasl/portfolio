@@ -57,10 +57,10 @@ export const creativeCodeSketches: CreativeCodeSketch[] = [
         shortTitle: 'Generator',
         tools: 'p5.js',
         summary:
-            'Generative art made by colored balls that attract each other based on color similarity and size, leaving trails as they move across the canvas.',
+            'A generator where each ball is pulled toward balls with similar colors. The closer two colors are, the harder they pull, and bigger balls are harder to move. The trails they leave build up into the picture.',
         details:
-            'Inspired by orbital mechanics and Agar.io. You can tune color-likeness sensitivity, velocity, attraction strength, blend modes, wall bouncing, and collision merging, then export a JPG without the controls.',
-        interactionHint: 'Click the canvas to place balls, press Paused to start, or press H to hide the UI.',
+            'I was inspired by planets orbiting each other and by Agar.io. You can change how similar two colors need to be to attract, scale speed and pull, pick a blend mode for the trails, and choose whether balls merge when they collide or bounce off the walls. Save JPG exports the canvas without the controls.',
+        interactionHint: 'Click the canvas three times to place a ball (center, size, aim), then click Paused to start. Press H to hide the controls.',
         liveUrl: 'https://siasl.github.io/Creative-Code/generator/',
         codeUrl: 'https://github.com/siasl/Creative-Code/tree/main/generator',
         layout: 'stack',
